@@ -1,0 +1,17 @@
+.card {
+    width: 223;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    background-color: rgb(54, 53, 66)
+}

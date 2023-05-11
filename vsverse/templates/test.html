@@ -1,9 +1,20 @@
-<!-- test.html -->
-
-{% for card in data %}
-  <div>
-    <h1>{{ card.title }}</h1>
-    <p>Version: {{ card.version }}</p>
-    <p>Power: {{ card.power }}</p>
-  </div>
-{% endfor %}
+{% load static %}
+<script src="{% static 'js/script.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/column.css' %}">
+ 
+<div class="container">
+    <div class="column" id="image-column">
+        <img id="0" src="{% static 'images/cover_fire.png' %}"  alt="Image 1" class="overlay-image card">
+        <img id="1" src="{% static 'images/gcpd_officer.png' %}" alt="Image 2" class="overlay-image card">
+        <img id="2" src="{% static 'images/batman_the_dark_knight.png' %}" alt="Image 2" class="overlay-image card">
+        <img id="3" src="{% static 'images/lay_down_with_dogs.png' %}" alt="Image 2" class="overlay-image card">
+        <img id="4" src="{% static 'images/press_the_attack.png' %}" alt="Image 2" class="overlay-image card">
+    </div>
+    <div class="column" id="image-column">
+        <img id="0" src="{% static 'images/cover_fire.png' %}"  alt="Image 1" class="overlay-image card">
+        <img id="1" src="{% static 'images/gcpd_officer.png' %}" alt="Image 2" class="overlay-image card">
+        <img id="2" src="{% static 'images/batman_the_dark_knight.png' %}" alt="Image 2" class="overlay-image card">
+        <img id="3" src="{% static 'images/lay_down_with_dogs.png' %}" alt="Image 2" class="overlay-image card">
+        <img id="4" src="{% static 'images/press_the_attack.png' %}" alt="Image 2" class="overlay-image card">
+    </div>
+</div>
