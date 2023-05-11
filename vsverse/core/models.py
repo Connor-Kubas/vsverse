@@ -46,7 +46,6 @@ class Decks(models.Model):
     quantity = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        # managed = False
         db_table = 'decks'
 
 
@@ -60,3 +59,12 @@ class Expansions(models.Model):
     class Meta:
         # managed = False
         db_table = 'expansions'
+
+class CardImages(models.Model):
+    card_id = models.IntegerField()
+    image_name = models.CharField(max_length=50)
+    image_type = models.CharField(max_length=4)
+
+    class Meta:
+        db_table = 'card_images'
+

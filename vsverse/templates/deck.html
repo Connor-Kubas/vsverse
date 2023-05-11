@@ -1,0 +1,29 @@
+{% load static %}
+{% load card_tags %}
+
+<script src="{% static 'js/script.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+ 
+<div class="container">
+    <div class="row">
+
+        {% comment %} {% card file='cover_fire.png' %}
+        {% card file='alfred.jpg' %}
+        {% card file='lay_down_with_dogs.png' %} {% endcomment %}
+
+        {% for card in deck %}
+            {% card file=card.image_name|add:"."|add:card.image_type %}
+        {% endfor %}
+
+        
+    </div>
+
+    
+
+    {% comment %} {% for card in decks %}
+        <h3>{{ card.image_name }}</h3>
+        <p>{{ card.card_id }}</p>
+    {% endfor %} {% endcomment %}
+    {% comment %} <h1>{{ decks }}</h1> {% endcomment %}
+
+</div>
