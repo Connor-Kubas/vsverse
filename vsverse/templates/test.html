@@ -1,43 +1,16 @@
 {% load static %}
+{% load card_tags %}
+
 <script src="{% static 'js/script.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'css/column.css' %}">
  
 <div class="container">
     <div class="column" id="image-column">
-        <div class="image-container">
-            <img id="0" src="{% static 'images/cover_fire.png' %}"  alt="Image 1" class="overlay-image card">
-            <div class="image-text">4</div>
-            <div class="quantity-modify">
-                <button class="image-button-add">+</button>
-                <button class="image-button-sub">-</button>
-            </div>
-        </div>
 
-        <div class="image-container" id='test'>
-            <img id="0" src="{% static 'images/lay_down_with_dogs.png' %}"  alt="Image 1" class="overlay-image card">
-            <div class="image-text">4</div>
-            <div class="quantity-modify">
-                <button class="image-button-add">+</button>
-                <button class="image-button-sub">-</button>
-            </div>
-        </div>
-          
-        <div class="image-container">
-            <img id="0" src="{% static 'images/alfred.jpg' %}"  alt="Image 1" class="overlay-image card">
-            <div class="image-text">4</div>
-            <div class="quantity-modify">
-                <button class="image-button-add">+</button>
-                <button class="image-button-sub">-</button>
-            </div>
-        </div>
+        {% card file='cover_fire.png' %}
+        {% card file='alfred.jpg' %}
+
     </div>
-    {% comment %} <div class="column" id="image-column">
-        <img id="0" src="{% static 'images/cover_fire.png' %}"  alt="Image 1" class="overlay-image card">
-        <img id="1" src="{% static 'images/gcpd_officer.png' %}" alt="Image 2" class="overlay-image card">
-        <img id="2" src="{% static 'images/batman_the_dark_knight.png' %}" alt="Image 2" class="overlay-image card">
-        <img id="3" src="{% static 'images/alfred.jpg' %}" alt="Image 2" class="overlay-image card">
-        <img id="4" src="{% static 'images/press_the_attack.png' %}" alt="Image 2" class="overlay-image card">
-    </div> {% endcomment %}
 </div>
 
 
