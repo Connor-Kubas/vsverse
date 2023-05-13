@@ -20,3 +20,6 @@ def deck(request):
     context = {'deck': card_images}
 
     return render(request, 'deck.html', context)
+
+def search(request):
+    print(request)

@@ -1,0 +1,31 @@
+{% load static %}
+{% load card_tags %}
+
+<div class="row character">
+    {% for card in deck %}
+        {% if card.card.type == 'Character' %}
+            {% card file=card.image_name|add:"."|add:card.image_type %}
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="row plot-twist">
+    {% for card in deck %}
+        {% if card.card.type == 'Plot Twist' %}
+            {% card file=card.image_name|add:"."|add:card.image_type %}
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="row equipment">
+    {% for card in deck %}
+        {% if card.card.type == 'Equipment' %}
+            {% card file=card.image_name|add:"."|add:card.image_type %}
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="row location">
+    {% for card in deck %}
+        {% if card.card.type == 'Location' %}
+            {% card file=card.image_name|add:"."|add:card.image_type %}
+        {% endif %}
+    {% endfor %}
+</div>
