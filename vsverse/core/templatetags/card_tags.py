@@ -11,7 +11,7 @@ def card(file):
 @register.simple_tag
 def search():
     # context = {'card': card}
-    return render_to_string('search-template.html')
+    return render_to_string('partials/search-template.html')
 
 @register.simple_tag
 def display_method(method, deck):

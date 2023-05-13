@@ -6,7 +6,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.index, name='index'),
     path('deck/', views.deck, name='deck'),
-    path('deck/search/<str:data>/', views.search),
+    path('deck/search/<str:data>', views.search, name="data"),
+    path('/deck/search/<str:data>', views.search, name="data"),
+    path('search/', views.search, name='search'),
+    path('partial-search/', views.partial_search, name='partial_search'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

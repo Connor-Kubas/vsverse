@@ -21,5 +21,31 @@ def deck(request):
 
     return render(request, 'deck.html', context)
 
-def search(request):
-    print(request)
+def search(request, data):
+    search = request.GET.get('data')
+    context = {'data': search}
+    print(data)
+    print(request.GET)
+    # print(data)
+    return render(request, 'deck.html', context)
+    # print(request, data)
+
+def partial_search(request):
+    if request.htmx:
+    #   print(request.GET.get('q'))
+      search = request.GET.get('q')
+
+      if search:
+          cards = Cards.objects.filter(title__icontains=search)
+          print(cards)
+      else:
+          cards = Cards.objects.none()
+
+      return render(
+          request=request,
+          template_name='partial_results.html',
+          context={
+              'cards': cards
+          }
+      )
+    return render(request, 'partial_search.html')

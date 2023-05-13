@@ -1,0 +1,8 @@
+{% load static %}
+
+{% for card in cards %}
+
+    {{ card.title}} - {{ card.version }}
+    <p style="margin-left: 20px; color: grey;">{{ card.power }}</p>
+
+{% endfor %}
