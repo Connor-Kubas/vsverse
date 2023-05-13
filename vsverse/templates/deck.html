@@ -38,16 +38,16 @@
         {% endif %}
     {% endfor %}
 </div>
-<div class="row location">
+<div class="row equipment">
     {% for card in deck %}
-        {% if card.card.type == 'Location' %}
+        {% if card.card.type == 'Equipment' %}
             {% card file=card.image_name|add:"."|add:card.image_type %}
         {% endif %}
     {% endfor %}
 </div>
-<div class="row equipment">
+<div class="row location">
     {% for card in deck %}
-        {% if card.card.type == 'Equipment' %}
+        {% if card.card.type == 'Location' %}
             {% card file=card.image_name|add:"."|add:card.image_type %}
         {% endif %}
     {% endfor %}

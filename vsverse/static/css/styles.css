@@ -11,18 +11,39 @@
     align-items: center;
 } */
 
+* {
+    padding: 0;
+    margin: 0;
+}
+
 .row {
-    margin-top: 100px;
+    /* margin-top: 100px; */
     padding-left: 5%;
     display: flex;
     flex-direction: row;
     align-items: center;
     background-color: rgb(41, 41, 41);
-    height: 500;
+    height: 470;
     width: 100%;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
-    background-color: rgb(54, 53, 66);
+    /* background-color: rgb(54, 53, 66); */
+    background-color:  black;
     color: white;
+}
+
+.character {
+    background-color: rgb(85, 2, 0);
+    overflow: auto;
+}
+
+.plot-twist {
+    background-color: rgb(0, 19, 101);
+    overflow: auto;
 }
