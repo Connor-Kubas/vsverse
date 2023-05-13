@@ -61,9 +61,11 @@ class Expansions(models.Model):
         db_table = 'expansions'
 
 class CardImages(models.Model):
-    card_id = models.IntegerField()
+    # card_id = models.IntegerField()
     image_name = models.CharField(max_length=50)
     image_type = models.CharField(max_length=4)
+    card = models.OneToOneField(Cards, on_delete=models.CASCADE, related_name='card_image')
+    # card = models.OneToOneField()
 
     class Meta:
         db_table = 'card_images'
