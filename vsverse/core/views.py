@@ -22,10 +22,6 @@ def deck(request):
 
     for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
         card.quantity = quantity
-        # print(card.quantity)
-
-    for deck_card in deck_cards:
-        print(deck_card.quantity)
 
     context = {'deck': deck_cards}
 
