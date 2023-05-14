@@ -48,6 +48,11 @@ body {
     overflow: auto;
 }
 
+.location {
+    background-color: rgb(23, 102, 32);
+    overflow: auto;
+}
+
 .search-container {
     background-color: black;
     display: flex;
@@ -94,3 +99,40 @@ body {
 }
 
 /* End Index.html */
+
+/* Table view */
+
+tr.character-row {
+    background-color: #7c2d2d;  /* Red background for Type1 cards */
+}
+
+tr.plot-twist-row {
+    background-color: #27456d;  /* Green background for Type2 cards */
+}
+
+tr.location-row {
+    background-color: #2c612a;  /* Blue background for Type3 cards */
+}
+
+tr.equipment-row {
+    /* Default background color for other types of cards */
+    background-color: #3f3f3f;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 2px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color:  rgb(68, 68, 68);
+}
+
+/* End table view */

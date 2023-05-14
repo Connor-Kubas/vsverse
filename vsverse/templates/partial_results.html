@@ -1,8 +1,42 @@
 {% load static %}
-
+<div class="results-container">
 {% for card in cards %}
 
-    {{ card.title}} - {{ card.version }}
-    <p style="margin-left: 20px; color: grey;">{{ card.power }}</p>
+    <p class="results results-title">{{ card.title}}</p>
+    <p class="results results-version">{{ card.version }}</p>
 
 {% endfor %}
+</div>
+
+<style>
+    .results-container {
+        display: none;
+        position: absolute;
+        width: 30%;
+        height: 20%;
+        overflow: auto;
+        background-color: black;
+        left: 50%;
+        margin-top: 2%;
+        transform: translate(-50%);
+        {% comment %} top: 50%; {% endcomment %}
+    }
+
+    .results {
+        padding-left: 5%;
+    }
+
+    .results.title {
+        padding-top: 5%;
+    }
+
+    .results-version {
+        color: rgb(113, 113, 113);
+        padding-bottom: 10px;
+    }
+
+    .results-container:empty {
+        display: none;
+        background-color: red;
+    }
+</style>

@@ -1,0 +1,17 @@
+<div class="search-container">
+    {% comment %} <form method="GET" action='search/'> {% endcomment %}
+    <form method="get" action='search/'>
+        {% comment %} <input type="text" name="data" class="search-input"></input> {% endcomment %}
+        <input class="search-input"
+               name="q"
+               placeholder="Add a card"
+               hx-get="{% url 'partial_search' %}"
+               hx-target="#results"
+               hx-trigger="input delay:.5s"
+        >
+    </form>
+
+    <section id="results">
+        {% include 'partial_results.html' %}
+    </section>
+</div>

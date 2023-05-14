@@ -167,14 +167,7 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class CardImages(models.Model):
-    card_id = models.IntegerField(blank=True, null=True)
-    image_name = models.CharField(max_length=50, blank=True, null=True)
-    image_type = models.CharField(max_length=4, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'card_images'
 
 
 class Cards(models.Model):
@@ -191,9 +184,22 @@ class Cards(models.Model):
     range = models.CharField(max_length=10, blank=True, null=True)
     visible = models.CharField(max_length=20, blank=True, null=True)
 
+    # card_image = models.OneToOneField()
+
     class Meta:
         managed = False
         db_table = 'cards'
+
+class CardImages(models.Model):
+    # card_id = models.ForeignKey(Cards, on_delete=models.CASCADE)
+    image_name = models.CharField(max_length=50, blank=True, null=True)
+    image_type = models.CharField(max_length=4, blank=True, null=True)
+
+    card = models.OneToOneField(Cards, on_delete=models.CASCADE, related_name='card_image')
+
+    class Meta:
+        managed = False
+        db_table = 'card_images'
 
 class Decks(models.Model):
     id = models.IntegerField(primary_key=True)

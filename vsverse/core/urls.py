@@ -12,8 +12,8 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('partial-search/', views.partial_search, name='partial_search'),
     path('view_deck', views.view_deck, name="view_deck"),
-    path('increment_quantity/<int:card_id>/', views.increment_quantity, name='increment_quantity'),
-    path('decrement_quantity/<int:card_id>/', views.decrement_quantity, name='decrement_quantity'),
+    path('increment_quantity/<int:deck_id>/<int:card_id>/', views.increment_quantity, name='increment_quantity'),
+    path('decrement_quantity/<int:deck_id>/<int:card_id>/', views.decrement_quantity, name='decrement_quantity'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

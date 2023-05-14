@@ -8,21 +8,22 @@
     <th>Version</th>
     <th>Cost</th>
 
-{% for card in deck %}
-    <tr>
-        <td id="quantity-{{ card.id }}">{{ card.quantity }}</td>
-        <td>{{ card.title }}</td>
-        <td>{{ card.version }}</td>
-        <td>{{ card.cost }}</td>
+{% for deck_card in deck %}
+    {% comment %} <tr> {% endcomment %}
+    <tr class="{% if deck_card.card.type == 'Character' %}character-row{% elif deck_card.card.type == 'Plot Twist' %}plot-twist-row{% elif deck_card.card.type == 'Location' %}location-row{% elif deck_card.card.type == 'Equipment' %}equipment-row{% else %}default{% endif %}">
+        <td id="quantity-{{ deck_card.card.id }}">{{ deck_card.quantity }}</td>
+        <td>{{ deck_card.card.title }}</td>
+        <td>{{ deck_card.card.version }}</td>
+        <td>{{ deck_card.card.cost }}</td>
 
         <td>
             <!-- Buttons for modifying the quantity -->
-            <button hx-get="{% url 'increment_quantity' card.id %}" hx-trigger="click"
-                    hx-swap="innerHTML" hx-target="#quantity-{{ card.id }}">
+            <button hx-get="{% url 'increment_quantity' deck_id=2 card_id=deck_card.card.id %}" hx-trigger="click"
+                    hx-swap="innerHTML" hx-target="#quantity-{{ deck_card.card.id }}">
                 +1
             </button>
-            <button hx-get="{% url 'decrement_quantity' card.id %}" hx-trigger="click"
-                    hx-swap="innerHTML" hx-target="#quantity-{{ card.id }}">
+            <button hx-get="{% url 'decrement_quantity' deck_id=2 card_id=deck_card.card.id %}" hx-trigger="click"
+                    hx-swap="innerHTML" hx-target="#quantity-{{ deck_card.card.id }}">
                 -1
             </button>
         </td>
@@ -31,21 +32,3 @@
 {% endfor %}
 
 </table>
-
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #22334d;
-    }
-</style>

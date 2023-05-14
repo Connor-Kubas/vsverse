@@ -13,21 +13,21 @@ def index(request):
 
 def deck(request):
     deck_id = request.GET.get('deck_id')
-    # deck = CardImages.objects.filter(card_id__in=Decks.objects.filter(deck_id=deck_id).values('card_id'))
 
     deck_cards = DeckCards.objects.filter(deck_id=deck_id)
 
-    # Get the card_ids and quantities from the DeckCards objects
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
 
-    # Retrieve the Cards objects for the card_ids
-    cards = Cards.objects.filter(id__in=[card_id for card_id, _ in card_ids_and_quantities])
+    # cards = Cards.objects.filter(id__in=[card_id for card_id, _ in card_ids_and_quantities])
 
-    # Assign the quantities to the respective Cards objects
-    for card, (_, quantity) in zip(cards, card_ids_and_quantities):
+    for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
         card.quantity = quantity
+        # print(card.quantity)
 
-    context = {'deck': cards}
+    for deck_card in deck_cards:
+        print(deck_card.quantity)
+
+    context = {'deck': deck_cards}
 
     return render(request, 'deck.html', context)
 
@@ -66,15 +66,15 @@ def view_deck(request):
         
     return render(request, 'edit_modal.html')
 
-def increment_quantity(request, card_id):
-    deck_card = DeckCards.objects.get(card_id=card_id)
-    print(deck_card)
+def increment_quantity(request, deck_id, card_id):
+    deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
+    print(deck_id)
     deck_card.quantity += 1
     deck_card.save()
     return HttpResponse(str(deck_card.quantity))
 
-def decrement_quantity(request, card_id):
-    deck_card = get_object_or_404(DeckCards, card_id=card_id)
+def decrement_quantity(request, deck_id, card_id):
+    deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
     if deck_card.quantity > 0:
         deck_card.quantity -= 1
         deck_card.save()
