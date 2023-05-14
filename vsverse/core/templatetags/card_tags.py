@@ -18,5 +18,7 @@ def display_method(method, deck):
     context = {'deck': deck}
     if method == 'row':
         return render_to_string('row-template.html', context)
+    elif method == 'table':
+        return render_to_string('table-template.html', context)
     else:
         return ''

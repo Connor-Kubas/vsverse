@@ -1,0 +1,51 @@
+{% load static %}
+{% load card_tags %}
+
+<table style="background-color: #163b73;">
+
+    <th>Quantity</th>
+    <th>Title</th>
+    <th>Version</th>
+    <th>Cost</th>
+
+{% for card in deck %}
+    <tr>
+        <td id="quantity-{{ card.id }}">{{ card.quantity }}</td>
+        <td>{{ card.title }}</td>
+        <td>{{ card.version }}</td>
+        <td>{{ card.cost }}</td>
+
+        <td>
+            <!-- Buttons for modifying the quantity -->
+            <button hx-get="{% url 'increment_quantity' card.id %}" hx-trigger="click"
+                    hx-swap="innerHTML" hx-target="#quantity-{{ card.id }}">
+                +1
+            </button>
+            <button hx-get="{% url 'decrement_quantity' card.id %}" hx-trigger="click"
+                    hx-swap="innerHTML" hx-target="#quantity-{{ card.id }}">
+                -1
+            </button>
+        </td>
+
+    </tr>
+{% endfor %}
+
+</table>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #22334d;
+    }
+</style>

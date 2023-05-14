@@ -3,21 +3,31 @@ from django.http import HttpResponse
 from .models import Cards
 from .models import Decks
 from .models import CardImages
+from .models import DeckCards
 from django.db.models import F
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
 def deck(request):
-    deck_id = 1
+    deck_id = request.GET.get('deck_id')
     # deck = CardImages.objects.filter(card_id__in=Decks.objects.filter(deck_id=deck_id).values('card_id'))
 
-    # card = Cards.objects.get(id=74)
-    deck = Decks.objects.filter(deck_id=deck_id).values_list('card_id', flat=True)
-    cards = Cards.objects.filter(id__in=deck).order_by('cost')
-    card_images = [card.card_image for card in cards]
+    deck_cards = DeckCards.objects.filter(deck_id=deck_id)
 
-    context = {'deck': card_images}
+    # Get the card_ids and quantities from the DeckCards objects
+    card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
+
+    # Retrieve the Cards objects for the card_ids
+    cards = Cards.objects.filter(id__in=[card_id for card_id, _ in card_ids_and_quantities])
+
+    # Assign the quantities to the respective Cards objects
+    for card, (_, quantity) in zip(cards, card_ids_and_quantities):
+        card.quantity = quantity
+
+    context = {'deck': cards}
 
     return render(request, 'deck.html', context)
 
@@ -49,3 +59,23 @@ def partial_search(request):
           }
       )
     return render(request, 'partial_search.html')
+
+def view_deck(request):
+    # if request.method == "GET":
+    # else:
+        
+    return render(request, 'edit_modal.html')
+
+def increment_quantity(request, card_id):
+    deck_card = DeckCards.objects.get(card_id=card_id)
+    print(deck_card)
+    deck_card.quantity += 1
+    deck_card.save()
+    return HttpResponse(str(deck_card.quantity))
+
+def decrement_quantity(request, card_id):
+    deck_card = get_object_or_404(DeckCards, card_id=card_id)
+    if deck_card.quantity > 0:
+        deck_card.quantity -= 1
+        deck_card.save()
+    return HttpResponse(str(deck_card.quantity))

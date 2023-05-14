@@ -1,0 +1,27 @@
+{% comment %} <form hx-get="{{ request.path }}" class="modal-content">
+    <button >Fat Bat</button>
+    
+</form> {% endcomment %}
+
+<form action="/deck/" method="get" class="modal-content">
+    <button value="1" name="deck_id" type="submit">Fat Bat</button><br>
+    <button value="2" name="deck_id" type="submit">Skrull</button>
+</form>
+
+  <style>
+    .modal-content {
+        background-color: red;
+        width: 500px;
+        height: 700px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background-color: white;
+        padding: 20px;
+        border: 1px solid black;
+        box-shadow: 10px 10px 5px #888888;
+    }
+  </style>
+  

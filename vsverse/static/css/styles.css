@@ -69,3 +69,28 @@ body {
     text-align: center;
     font-size: 1em;
 }
+
+/* Index.html */
+
+.page-select-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-select-input  {
+    cursor: pointer;
+    font-size: 1em;
+    margin: 1%;
+    width: 200px;
+    height: 50px;
+}
+
+.page-select-input:hover {
+    outline: none;
+    background-color:rgb(139, 139, 139)
+}
+
+/* End Index.html */
