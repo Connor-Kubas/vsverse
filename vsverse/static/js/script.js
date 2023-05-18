@@ -18,4 +18,14 @@ htmx.on("htmx:beforeSwap", (e) => {
   htmx.on("hidden.bs.modal", () => {
     document.getElementById("dialog").innerHTML = ""
   })
-  
+
+function removeTableRow() {
+  const td = event.target.parentNode;
+  const tr = td.parentNode;
+  tr.parentNode.removeChild(tr);
+}
+
+function ClearInputField() {
+  console.log('test');
+  document.getElementsByClassName("search-input").value = "";
+}

@@ -9,11 +9,13 @@ urlpatterns = [
     # path('deck/<str:deck_id>', views.deck, name='deck'),
     # path('deck/search/<str:data>', views.search, name="data"),
     # path('/deck/search/<str:data>', views.search, name="data"),
-    path('search/', views.search, name='search'),
-    path('partial-search/', views.partial_search, name='partial_search'),
+    path('partial-search/<int:deck_id>/', views.partial_search, name='partial_search'),
     path('view_deck', views.view_deck, name="view_deck"),
     path('increment_quantity/<int:deck_id>/<int:card_id>/', views.increment_quantity, name='increment_quantity'),
     path('decrement_quantity/<int:deck_id>/<int:card_id>/', views.decrement_quantity, name='decrement_quantity'),
+
+    path('add_table_row/<int:deck_id>/<int:card_id>/', views.add_table_row, name='add_table_row'),
+    # path('add_from_search/<int:deck_id/<int:card_id>')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

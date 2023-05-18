@@ -9,9 +9,9 @@ def card(file):
     return render_to_string('card_template.html', context)
 
 @register.simple_tag
-def search():
-    # context = {'card': card}
-    return render_to_string('search-template.html')
+def search(deck):
+    context = {'deck': deck[0]}
+    return render_to_string('search-template.html', context)
 
 @register.simple_tag
 def display_method(method, deck):

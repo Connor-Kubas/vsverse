@@ -5,10 +5,10 @@
 
 {% block content %}
 
-{% search %}
+{% search deck=deck %}
 
-{% display_method method="row" deck=deck %}
-{% comment %} {% display_method method="table" deck=deck %} {% endcomment %}
+{% comment %} {% display_method method="row" deck=deck %} {% endcomment %}
+{% display_method method="table" deck=deck %}
 
 {% endblock %}
 

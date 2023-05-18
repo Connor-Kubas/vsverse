@@ -1,8 +1,22 @@
 {% load static %}
 <div class="results-container">
 {% for card in cards %}
+    <form hx-post="/increment_quantity/{{ deck_id }}/{{ card.id }}/">
+        {% csrf_token %}
+        <input
+            type="button"
+            class="card-button"
+            id="add-card-button"
+            hx-get="{% url 'add_table_row' deck_id=deck_id card_id=card.id %}"
+            hx-target="#table"
+            hx-swap="beforeend"
+            onclick="ClearInputField();"
+            value="{{ card.title}}"
+        />
+    </form>
 
     <p class="results results-title">{{ card.title}}</p>
+    
     <p class="results results-version">{{ card.version }}</p>
 
 {% endfor %}
@@ -10,16 +24,15 @@
 
 <style>
     .results-container {
-        display: none;
         position: absolute;
         width: 30%;
-        height: 20%;
+        height: auto;
+        max-height: 30vh;
         overflow: auto;
         background-color: black;
         left: 50%;
         margin-top: 2%;
         transform: translate(-50%);
-        {% comment %} top: 50%; {% endcomment %}
     }
 
     .results {

@@ -1,7 +1,7 @@
 {% load static %}
 {% load card_tags %}
 
-<table style="background-color: #163b73;">
+<table id="table" style="background-color: #163b73;">
 
     <th>Quantity</th>
     <th>Title</th>
@@ -9,7 +9,6 @@
     <th>Cost</th>
 
 {% for deck_card in deck %}
-    {% comment %} <tr> {% endcomment %}
     <tr class="{% if deck_card.card.type == 'Character' %}character-row{% elif deck_card.card.type == 'Plot Twist' %}plot-twist-row{% elif deck_card.card.type == 'Location' %}location-row{% elif deck_card.card.type == 'Equipment' %}equipment-row{% else %}default{% endif %}">
         <td id="quantity-{{ deck_card.card.id }}">{{ deck_card.quantity }}</td>
         <td>{{ deck_card.card.title }}</td>
@@ -17,7 +16,6 @@
         <td>{{ deck_card.card.cost }}</td>
 
         <td>
-            <!-- Buttons for modifying the quantity -->
             <button hx-get="{% url 'increment_quantity' deck_id=2 card_id=deck_card.card.id %}" hx-trigger="click"
                     hx-swap="innerHTML" hx-target="#quantity-{{ deck_card.card.id }}">
                 +1
