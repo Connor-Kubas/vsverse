@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('deck/', views.deck, name='deck'),
+    path('deck/<int:deck_id>/', views.deck, name='deck'),
     # path('deck/<str:deck_id>', views.deck, name='deck'),
     # path('deck/search/<str:data>', views.search, name="data"),
     # path('/deck/search/<str:data>', views.search, name="data"),

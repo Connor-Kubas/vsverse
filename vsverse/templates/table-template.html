@@ -16,11 +16,11 @@
         <td>{{ deck_card.card.cost }}</td>
 
         <td>
-            <button hx-get="{% url 'increment_quantity' deck_id=2 card_id=deck_card.card.id %}" hx-trigger="click"
+            <button hx-get="{% url 'increment_quantity' deck_id=deck_card.deck_id card_id=deck_card.card.id %}" hx-trigger="click"
                     hx-swap="innerHTML" hx-target="#quantity-{{ deck_card.card.id }}">
                 +1
             </button>
-            <button hx-get="{% url 'decrement_quantity' deck_id=2 card_id=deck_card.card.id %}" hx-trigger="click"
+            <button hx-get="{% url 'decrement_quantity' deck_id=deck_card.deck_id card_id=deck_card.card.id %}" hx-trigger="click"
                     hx-swap="innerHTML" hx-target="#quantity-{{ deck_card.card.id }}">
                 -1
             </button>

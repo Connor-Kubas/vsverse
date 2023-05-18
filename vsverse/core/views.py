@@ -7,13 +7,17 @@ from .models import DeckCards
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
 
-def deck(request):
-    deck_id = request.GET.get('deck_id')
+    decks = Decks.objects.all()
 
+    context = {'decks': decks}
+
+    return render(request, 'index.html', context)
+
+def deck(request, deck_id):
     deck_cards = DeckCards.objects.filter(deck_id=deck_id)
 
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
@@ -63,6 +67,8 @@ def increment_quantity(request, deck_id, card_id):
     return HttpResponse(str(deck_card.quantity))
 
 def decrement_quantity(request, deck_id, card_id):
+    print(deck_id)
+    print(card_id)
     deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
     deck_card.quantity -= 1
     if deck_card.quantity > 0:

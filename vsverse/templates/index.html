@@ -9,16 +9,29 @@
     <input class="page-select-input" type="button" value="Advanced Card Search">
     {% comment %} <input class="page-select-input" type="button" value="Edit Decks"> {% endcomment %}
 
-    <button class="page-select-input" hx-get="{% url 'view_deck' %}" hx-target="#dialog" value="1">
-        Edit Deck
+    <button class="page-select-input" id="myBtn">
+        Edit Decks
     </button>
-      
 
     <input class="page-select-input" type="button" value="Create New Deck">
 </div>
 
-<div id="modal" class="modal fade">
-    <div id="dialog" class="modal-dialog" hx-target="this"></div>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+
+        <h2>Choose which deck to edit</h2>
+
+      {% comment %} <span class="close">&times;</span> {% endcomment %}
+
+        <div class="modal-titles">
+            {% for deck in decks %}
+                <a class="edit-deck-button" href="/deck/{{ deck.id }}">{{ deck.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+  
 </div>
   
 
