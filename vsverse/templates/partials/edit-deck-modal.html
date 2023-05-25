@@ -1,0 +1,18 @@
+<div class="modal-content">
+
+    <h2>Choose which deck to edit</h2>
+
+    <div class="modal-titles">
+        {% for deck in decks %}
+            <a class="edit-deck-button" href="/deck/{{ deck.id }}">{{ deck.title }}</a>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% comment %} <style>
+    .container {
+        display: flex;
+
+    }
+</style> {% endcomment %}

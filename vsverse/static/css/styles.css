@@ -11,9 +11,19 @@
     align-items: center;
 } */
 
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Open Sans Light';
 }
 
 .row {
@@ -36,7 +46,7 @@ html, body {
 
 body {
     /* background-color: rgb(54, 53, 66); */
-    background-color:  black;
+    background-color:  rgb(24, 24, 24);
     color: white;
 }
 
@@ -81,23 +91,29 @@ body {
 
 .page-select-container {
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .page-select-input  {
+    transition: transform .2s;
+    font-family: 'Open Sans Regular';
+    font-family: "Percolator";
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.8em;
     margin: 1%;
-    width: 200px;
-    height: 50px;
+    width: 300px;
+    height: 80px;
+    border-radius: 500px;
 }
 
 .page-select-input:hover {
+    
+    transform: scale(1.1);
     outline: none;
-    background-color:rgb(139, 139, 139)
+    background-color:rgb(189, 234, 255)
 }
 
 .edit-deck-button {
@@ -114,7 +130,7 @@ body {
 
  /* The Modal (background) */
  .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -123,7 +139,7 @@ body {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
   }
   
   /* Modal Content/Box */

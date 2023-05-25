@@ -91,3 +91,13 @@ def add_table_row(request, deck_id, card_id):
         'deck_id': deck_id,
     }
     return render(request, template_name, context)
+
+def edit_deck(request):
+
+    decks = Decks.objects.all()
+    context = {'decks': decks}
+
+    return render(request, 'partials/edit-deck-modal.html', context)
+
+def create_deck(request):
+    return render(request, 'partials/create-deck-modal.html')

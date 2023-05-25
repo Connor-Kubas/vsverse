@@ -5,35 +5,57 @@
 
 {% block content %}
 
-<div class="page-select-container">
-    <input class="page-select-input" type="button" value="Advanced Card Search">
-    {% comment %} <input class="page-select-input" type="button" value="Edit Decks"> {% endcomment %}
+<div class="container">
 
-    <button class="page-select-input" id="myBtn">
-        Edit Decks
-    </button>
-
-    <input class="page-select-input" type="button" value="Create New Deck">
-</div>
-
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-
-        <h2>Choose which deck to edit</h2>
-
-      {% comment %} <span class="close">&times;</span> {% endcomment %}
-
-        <div class="modal-titles">
-            {% for deck in decks %}
-                <a class="edit-deck-button" href="/deck/{{ deck.id }}">{{ deck.title }}</a>
-            {% endfor %}
-        </div>
+    <div class="banner">
+        <p></p>
     </div>
-  
+
+    <div class="page-select-container">
+        <input class="page-select-input" type="button" value="Advanced Card Search">
+        {% comment %} <input class="page-select-input" type="button" value="Edit Decks"> {% endcomment %}
+
+        <button class="page-select-input page-select-input-modal" hx-get="edit-deck-modal" hx-target="#modal">
+            Edit Decks
+        </button>
+
+        <button class="page-select-input page-select-input-modal" hx-get="create-deck-modal" hx-target="#modal">
+            Create New Deck
+        </button>
+
+        <!-- Modal -->
+        <div id="modal" class="modal"></div>  
+
+    </div>
+
+    <footer>
+        <p>VsVerse made by Connor Kubas</p>
+    </footer>
+
 </div>
-  
+
+<style>
+    footer {
+        width: 100vw;
+        height: 5%;
+        background-color: black;
+        color: rgb(100, 100, 100);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .banner {
+        width: 100vw;
+        height: 5%;
+        background-color: black;
+    }
+
+    #modal-content: {
+
+    }
+</style>
 
 {% endblock %}
 
