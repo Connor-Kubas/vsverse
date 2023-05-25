@@ -11,6 +11,7 @@ def card(file):
 @register.simple_tag
 def search(deck):
     context = {'deck': deck[0]}
+
     return render_to_string('search-template.html', context)
 
 @register.simple_tag

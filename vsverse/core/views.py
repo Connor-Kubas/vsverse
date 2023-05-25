@@ -19,24 +19,27 @@ def index(request):
 
 def deck(request, deck_id):
     deck_cards = DeckCards.objects.filter(deck_id=deck_id)
+    deck = Decks.objects.filter(id=deck_id)
 
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
 
     for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
         card.quantity = quantity
 
-    context = {'deck': deck_cards}
+    context = {
+        'deck_cards': deck_cards,
+        'deck': deck,
+    }
 
     return render(request, 'deck.html', context)
 
 def partial_search(request, deck_id):
+    print('test')
     if request.htmx:
-    #   print(request.GET.get('q'))
       search = request.GET.get('q')
 
       if search:
           cards = Cards.objects.filter(title__icontains=search)
-          print(cards)
       else:
           cards = Cards.objects.none()
 
@@ -48,7 +51,6 @@ def partial_search(request, deck_id):
               'deck_id': deck_id,
           }
       )
-    return render(request, 'partial_search.html')
 
 def view_deck(request):
     # if request.method == "GET":
@@ -67,8 +69,6 @@ def increment_quantity(request, deck_id, card_id):
     return HttpResponse(str(deck_card.quantity))
 
 def decrement_quantity(request, deck_id, card_id):
-    print(deck_id)
-    print(card_id)
     deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
     deck_card.quantity -= 1
     if deck_card.quantity > 0:
@@ -111,4 +111,5 @@ def create_deck(request):
     deck = Decks(title=deck_name)
     deck.save()
 
+    
     # return render(request, 'index.html')

@@ -5,7 +5,7 @@
         <input class="search-input"
                name="q"
                placeholder="Add a card"
-               hx-get="{% url 'partial_search' deck_id=deck.deck_id %}"
+               hx-get="{% url 'partial_search' deck_id=deck.id %}"
                hx-target="#results"
                hx-trigger="input delay:.5s"
         >
