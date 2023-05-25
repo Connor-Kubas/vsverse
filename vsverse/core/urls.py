@@ -20,6 +20,9 @@ urlpatterns = [
     path('edit-deck-modal', views.edit_deck_modal, name='edit-deck-modal'),
     path('create-deck-modal', views.create_deck_modal, name='create-deck-modal'),
     path('create_deck/', views.create_deck, name='create_deck'),
+
+    path('advanced-search/', views.advanced_search, name="advanced-search"),
+    path('card-template/', views.card_template, name="card-template"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

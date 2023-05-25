@@ -9,10 +9,12 @@
 
     <div class="banner">
         <p></p>
+        {% card_template %}
     </div>
 
     <div class="page-select-container">
-        <input class="page-select-input" type="button" value="Advanced Card Search">
+        {% comment %} <input class="page-select-input" type="button" value="Advanced Card Search"> {% endcomment %}
+        <a href="/advanced-search" class="page-select-link">Advanced Card Search</a>
         {% comment %} <input class="page-select-input" type="button" value="Edit Decks"> {% endcomment %}
 
         <button class="page-select-input page-select-input-modal" hx-get="edit-deck-modal" hx-target="#modal">

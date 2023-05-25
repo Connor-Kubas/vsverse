@@ -6,7 +6,7 @@ register = template.Library()
 @register.simple_tag
 def card(file):
     context = {'file': file}
-    return render_to_string('card_template.html', context)
+    return render_to_string('card_image_template.html', context)
 
 @register.simple_tag
 def search(deck):
@@ -36,3 +36,10 @@ def quantity(deck, card_type):
     cards = [card.card for card in deck_cards]
 
     return sum(1 for card in cards if card.type == card_type)
+
+@register.simple_tag
+def card_template(card):
+
+    context = {}
+
+    return ('card_template.html', context)

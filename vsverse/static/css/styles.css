@@ -109,7 +109,25 @@ body {
     border-radius: 500px;
 }
 
-.page-select-input:hover {
+.page-select-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: white;
+    transition: transform .2s;
+    font-family: 'Open Sans Regular';
+    font-family: "Percolator";
+    cursor: pointer;
+    font-size: 1.8em;
+    margin: 1%;
+    width: 300px;
+    height: 80px;
+    border-radius: 500px;
+    text-decoration: none;
+}
+
+.page-select-input:hover, .page-select-link:hover {
     
     transform: scale(1.1);
     outline: none;
