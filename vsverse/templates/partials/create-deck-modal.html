@@ -1,8 +1,9 @@
 <div class="modal-content">
-    <form action="POST">
-
+    <form hx-post="create_deck/" autocomplete="off">
+        {% csrf_token %}
         <h2>Deck Name</h2>
         <input type="text" name="deck_name">
+        <input type="submit" value="Create">
 
     </form>
 </div>

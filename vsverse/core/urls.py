@@ -17,8 +17,9 @@ urlpatterns = [
     path('add_table_row/<int:deck_id>/<int:card_id>/', views.add_table_row, name='add_table_row'),
     # path('add_from_search/<int:deck_id/<int:card_id>')
 
-    path('edit-deck-modal', views.edit_deck, name='edit-deck-modal'),
-    path('create-deck-modal', views.create_deck, name='create-deck-modal'),
+    path('edit-deck-modal', views.edit_deck_modal, name='edit-deck-modal'),
+    path('create-deck-modal', views.create_deck_modal, name='create-deck-modal'),
+    path('create_deck/', views.create_deck, name='create_deck'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

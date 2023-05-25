@@ -202,7 +202,7 @@ class CardImages(models.Model):
         db_table = 'card_images'
 
 class Decks(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=30, blank=True, null=True)
 
     class Meta:
