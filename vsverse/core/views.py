@@ -115,10 +115,13 @@ def create_deck(request):
     # return render(request, 'index.html')
 
 def advanced_search(request):
-    return render(request, 'advanced-search.html')
+    cards = Cards.objects.order_by('title')[:50]
+
+    context = {'cards': cards}
+
+    return render(request, 'advanced-search.html', context)
 
 def card_template(request):
-    card = Cards.objects.filter(id=796)
-    context = {'card': card[0]}
+    
 
     return render(request, 'card-template.html', context)

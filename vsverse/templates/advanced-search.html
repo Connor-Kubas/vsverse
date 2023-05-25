@@ -5,6 +5,8 @@
 
 {% block content %}
 
-<input type="text">
+{% for card in cards %}
+    {% card_template card %}
+{% endfor %}
 
 {% endblock %}

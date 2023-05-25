@@ -37,9 +37,33 @@ def quantity(deck, card_type):
 
     return sum(1 for card in cards if card.type == card_type)
 
-@register.simple_tag
+@register.inclusion_tag('card-template.html')
 def card_template(card):
+    # image_name = ''
 
-    context = {}
+    if card.visible == 'Visible' and card.type == 'Character':
+        print('character')
+        image_name = 'new_character'
+    elif card.visible == 'Concealed':
+        image_name = 'new_character_concealed'
+    elif card.visible == 'Concealed—Optional':
+        image_name = 'new_character_concealed_optional'
+    elif card.type == 'Equipment':
+        image_name = 'equipment'
+    elif card.type == 'Plot Twist':
+        image_name = 'plot_twist'
+    elif card.type == 'Location':
+        image_name = 'new_location'
+    else:
+        image_name = 'new_character'
 
-    return ('card_template.html', context)
+    if card.attack is None:
+        card.attack = ''
+        card.defense = ''
+
+    context = {
+        'card': card,
+        'image_name': image_name,
+    }
+
+    return context

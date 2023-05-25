@@ -1,66 +1,115 @@
 {% load static %}
 
-<div class="card">
-    {% comment %} <img src="{% static 'images/card_templates/new_character.png' %}" class="card-image"> {% endcomment %}
-        <p class="cost">{{ card.cost }}</p>
-        <p class="version">{{ card.version }}</p>
-        <p class="title">{{ card.title }}</p>
-        <p class="power">{{ card.power}}</p>
-</div>
-
-<style>
-
-    body {
-        background-color: grey;
-    }
-
-    .card {
-        background-image: url('../static/images/card_templates/new_character.png');
+<div class="card" 
+    style="
+        background-image: url('../static/images/card_templates/{{ image_name }}.png');
+        display: flex;
         background-size: cover;
         width: 294px;
         height: 410px;
-    }
-
-    .title {
-        padding: 0px;
-        margin: 0px;
-        color: white;
+    ">
+    <div class="cost" style="
+        width: 15%;
+        height: 10%;
+        margin-left: 2%;
+        margin-top: 7%;
+        color: #ffcf4f;
+        font-size: 1em;
+        text-align: center;
+        font-family: 'badhouse';
+        text-shadow: 3px 3px black;
+    ">
+        <h2>{{ card.cost }}</h2>
+    </div>
+    <div class="title"
+        style="
+            margin-top: 6%;
+            width: 70%;
+            height: 8%;
+            margin-left: 0%;
+            font-family: 'Percolator';
+            font-size: 1.1em;
+            color: white;
+            text-align: center;
+        ">
+        <p>{{ card.title }}</p>
+    </div>
+    <div class="version" style="
+        height: 5%;
+        width: 70%;
         font-family: 'Percolator';
-        margin-top: -19%;
+        font-size: 0.8em;
+        color: #f0e6e1;
+        margin-top: 14%;
+        margin-left: -70%;
         text-align: center;
-        font-size: 1.2em;
-    }
-
-    .version {
-        color: white;
-        text-align: center;
-        font-size: .8em;
-        margin-top: -16%;
-    }
-
-    .cost {
-        font-family: 'Badhouse';
-        color: white;
-        margin-left: 7%;
-        padding-top: 5%;
-        font-size: 2em;
-    }
-
-    .power {
-        {% comment %} color: red; {% endcomment %}
-        {% comment %} font-family: 'eurostile'; {% endcomment %}
-        {% comment %} text-align: center; {% endcomment %}
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    ">
+        <p>{{ card.version }}</p>
+    </div>
+    <div class="affiliation" style="
         width: 90%;
-        padding-top: 80%;
-        padding-left: 6%;
-        font-size: 0.7em;
-        line-height: 85%;
-    }
+        height: 4%;
+        margin-top: 89.5%;
+        margin-left: -72%;
+        font-size: 0.6em;
+        text-align: center;
+        color: rgb(54, 4, 3);
+    ">
+        <p>{{ card.affiliation }}</p>
+    </div>
+    <div class="power" style="
+        font-family: 'eurostile';
+        font-size: 0.8em;
+        line-height: 100%;
+        margin-top: 95%;
+        margin-left: -100%;
+        bottom: 130px;
+        width: 90%;
+        height: 19%;
+        color: black;
+    ">
+        <p>{{ card.power }}</p>
+    </div>
 
-    .title-card {
-        {% comment %} display: flex; {% endcomment %}
-    }
-</style>
+    <div class="range" style="
+        margin-top: 130%;
+        margin-left: -77%;
+        width: 10px;
+        height: 10px;
+    "></div>
+    <div class="flight" style="
+        margin-top: 125%;
+        margin-left: -3.5%;
+        width: 10px;
+        height: 10px;
+    "></div>
+
+    <div class="attack" style="
+        width: 10%;
+        height: 10%;
+        margin-top: 122%;
+        margin-left: -15%;
+        color: #ffcf4f;
+        font-size: 1.2em;
+        font-family: "Badhouse";
+        text-shadow: 2px 2px black;
+        text-align: center;
+    ">
+        <h3>{{ card.attack }}</h3>
+    </div>
+    <div class="defense" style="
+        width: 10%;
+        height: 10%;
+        margin-top: 122%;
+        margin-left: 68%;
+        color: #6aa1c0;
+        font-size: 1.2em;
+        font-family: "Badhouse";
+        text-shadow: 2px 2px black;
+        text-align: center;
+    ">
+        <h3>{{ card.defense }}</h3>
+    </div>
+</div>
+</div>
+
