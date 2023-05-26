@@ -23,7 +23,8 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Open Sans Light';
+    /* font-family: 'Open Sans Light'; */
+    outline: none !important;
 }
 
 .row {

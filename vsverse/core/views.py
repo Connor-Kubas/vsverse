@@ -115,13 +115,22 @@ def create_deck(request):
     # return render(request, 'index.html')
 
 def advanced_search(request):
-    cards = Cards.objects.order_by('title')[:50]
+    # cards = Cards.objects.order_by('title')[:50]
+    query = 'select * from cards where title = "Vulture"'
+    cards = Cards.objects.raw(query)
+    # cards = Cards.objects.raw('SELECT * FROM cards WHERE power LIKE CONCAT("%", %s, "%") ORDER BY cost ASC', ['Illuminati'])
+
 
     context = {'cards': cards}
 
     return render(request, 'advanced-search.html', context)
 
 def card_template(request):
-    
+    card = Cards.objects.get(title="Lay Down With Dogs")
+    context = {'card': card}
 
     return render(request, 'card-template.html', context)
+
+def card_search(request):
+
+    return render(request, 'partials/card-search.html')

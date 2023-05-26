@@ -1,0 +1,206 @@
+{% load static %}
+
+<div class="card" 
+    style="
+        background-image: url('../../static/images/empty_card.png');
+        display: flex;
+        background-size: cover;
+        width: 294px;
+        height: 410px;
+        border-radius: 18px;
+    ">
+    <div class="cost" style="
+        width: 15%;
+        height: 10%;
+        margin-left: 2%;
+        margin-top: 6%;
+        color: #ffcf4f;
+        font-size: 1em;
+        text-align: center;
+        font-family: 'badhouse';
+        text-shadow: 3px 3px black;
+    ">
+        <input type="text" style="
+            width: 100%;
+            height: 100%;
+            opacity: 50%;
+            border-radius: 50px;
+            text-align: center;
+            font-family: 'badhouse';
+            font-size: 1.5em;
+            outline: none;
+        "/>
+    </div>
+    <div class="title"
+        style="
+            margin-top: 6%;
+            width: 65%;
+            height: 5%;
+            margin-left: 0%;
+            font-family: 'Percolator';
+            font-size: 1.1em;
+            color: rgb(229, 230, 225);
+            {% comment %} color: white; {% endcomment %}
+            text-align: center;
+        ">
+        {% comment %} <p>Superman</p> {% endcomment %}
+        <input type="text" 
+        style="
+            width: 100%;
+            height: 100%;
+            opacity: 50%;
+            text-align: center;
+            outline: none;
+            font-family: 'Percolator';
+            font-size: 1.1em;
+        "/>
+    </div>
+    <div class="version" style="
+        height: 4%;
+        width: 60%;
+        font-family: 'Percolator';
+        font-size: 0.8em;
+        color: rgb(229, 230, 225);
+        margin-top: 14%;
+        margin-left: -60%;
+        text-align: center;
+    ">
+        {% comment %} <p>Metropolis Marvel</p> {% endcomment %}
+        <input type="text"  style="
+        
+            width: 100%;
+            height: 100%;
+            outline: none;
+            opacity: 50%;
+            text-align: center;
+            font-family: 'Percolator';
+            font-size: 0.8em;
+        
+        " />
+    </div>
+    <div class="affiliation" style="
+        width: 90%;
+        height: 4%;
+        margin-top: 88.5%;
+        margin-left: -77%;
+        font-size: 0.6em;
+        text-align: center;
+        color: rgb(54, 4, 3);
+    ">
+        {% comment %} <p>Skrull</p> {% endcomment %}
+        <input type="text" style="
+            width: 100%;
+            height: 100%;
+            opacity: 50%;
+            text-align: center;
+            font-family: 'eurostile';
+            font-size: 1em;
+            outline: none;
+        
+        
+        
+        
+        " />
+    </div>
+    <div class="power" style="
+        font-family: 'eurostile';
+        font-size: 0.8em;
+        line-height: 100%;
+        margin-top: 95%;
+        margin-left: -90%;
+        bottom: 130px;
+        width: 90%;
+        height: 19%;
+        color: black;
+    ">
+        {% comment %} <p>This is the power.</p> {% endcomment %}
+        <input type="text" style="
+            font-size: 0.8em;
+            line-height: 100%;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            opacity: 50%;
+            font-family: 'eurostile'
+        
+        
+        
+        " />
+    </div>
+
+    <div class="range" style="
+        margin-top: 130%;
+        margin-left: -77%;
+        width: 10px;
+        height: 10px;
+    ">
+        <input type="checkbox" style="
+
+        
+        " />
+
+    </div>
+    <div class="flight" style="
+        margin-top: 125%;
+        margin-left: -3.5%;
+        width: 10px;
+        height: 10px;
+    ">
+        <input type="checkbox" style="
+
+        
+        " />
+    </div>
+
+    <div class="attack" style="
+        width: 10%;
+        height: 10%;
+        margin-top: 122%;
+        margin-left: -15%;
+        color: #ffcf4f;
+        font-size: 1.2em;
+        font-family: 'badhouse';
+        text-shadow: 2px 2px black;
+        text-align: center;
+    ">
+        <h3>5</h3>
+    </div>
+    <div class="defense" style="
+        width: 10%;
+        height: 10%;
+        margin-top: 122%;
+        margin-left: 68%;
+        color: #6aa1c0;
+        font-size: 1.2em;
+        font-family: 'badhouse';
+        text-shadow: 2px 2px black;
+        text-align: center;
+    ">
+        <h3>5</h3>
+    </div>
+</div>
+</div>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        background-color: darkgrey;
+    }
+
+    .affiliation {
+        {% comment %} background-color: red; {% endcomment %}
+    }
+
+    .cost {
+        {% comment %} background-color: red; {% endcomment %}
+    }
+
+
+    .power {
+        {% comment %} background-color: blue; {% endcomment %}
+    }
+</style>

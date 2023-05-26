@@ -41,6 +41,19 @@ def quantity(deck, card_type):
 def card_template(card):
     # image_name = ''
 
+    range_name = ''
+    flight_name = ''
+
+    if card.range == '1' and card.visible == 'Visible':
+        range_name = 'visible_range'
+    elif card.range == '1' and card.visible != 'Visible':
+        range_name = 'concealed_range'
+
+    if card.flight == '1' and card.visible == 'Visible':
+        flight_name = 'visible_flight'
+    elif card.flight == '1' and card.visible != 'Visible':
+        flight_name = 'concealed_flight'
+
     if card.visible == 'Visible' and card.type == 'Character':
         print('character')
         image_name = 'new_character'
@@ -64,6 +77,8 @@ def card_template(card):
     context = {
         'card': card,
         'image_name': image_name,
+        'range_name': range_name,
+        'flight_name': flight_name,
     }
 
     return context

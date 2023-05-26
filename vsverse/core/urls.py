@@ -23,6 +23,8 @@ urlpatterns = [
 
     path('advanced-search/', views.advanced_search, name="advanced-search"),
     path('card-template/', views.card_template, name="card-template"),
+
+    path('card-search', views.card_search, name='card-search'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

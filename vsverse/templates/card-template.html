@@ -7,6 +7,7 @@
         background-size: cover;
         width: 294px;
         height: 410px;
+        border-radius: 18px;
     ">
     <div class="cost" style="
         width: 15%;
@@ -29,7 +30,7 @@
             margin-left: 0%;
             font-family: 'Percolator';
             font-size: 1.1em;
-            color: white;
+            color: rgb(229, 230, 225);
             text-align: center;
         ">
         <p>{{ card.title }}</p>
@@ -39,7 +40,7 @@
         width: 70%;
         font-family: 'Percolator';
         font-size: 0.8em;
-        color: #f0e6e1;
+        color: rgb(229, 230, 225);
         margin-top: 14%;
         margin-left: -70%;
         text-align: center;
@@ -72,16 +73,20 @@
     </div>
 
     <div class="range" style="
-        margin-top: 130%;
-        margin-left: -77%;
-        width: 10px;
-        height: 10px;
+        margin-top: 129%;
+        margin-left: -77.8%;
+        width: 15px;
+        height: 15px;
+        background-image: url('../static/images/card_templates/{{ range_name }}.png');
+        background-size: contain;
     "></div>
     <div class="flight" style="
-        margin-top: 125%;
-        margin-left: -3.5%;
-        width: 10px;
-        height: 10px;
+        margin-top: 123.5%;
+        margin-left: -5.1%;
+        width: 15px;
+        height: 15px;
+        background-image: url('../static/images/card_templates/{{ flight_name }}.png');
+        background-size: contain;
     "></div>
 
     <div class="attack" style="
@@ -91,7 +96,7 @@
         margin-left: -15%;
         color: #ffcf4f;
         font-size: 1.2em;
-        font-family: "Badhouse";
+        font-family: 'badhouse';
         text-shadow: 2px 2px black;
         text-align: center;
     ">
@@ -104,7 +109,7 @@
         margin-left: 68%;
         color: #6aa1c0;
         font-size: 1.2em;
-        font-family: "Badhouse";
+        font-family: 'badhouse';
         text-shadow: 2px 2px black;
         text-align: center;
     ">
@@ -113,3 +118,15 @@
 </div>
 </div>
 
+<style>
+    .range{
+        {% comment %} z-index: 5;
+        background-color: red;
+        opacity: 50%; {% endcomment %}
+    }
+
+    .flight{
+        {% comment %} background-color: blue;
+        opacity: 50%; {% endcomment %}
+    }
+</style>
