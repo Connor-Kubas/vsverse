@@ -116,7 +116,7 @@ def create_deck(request):
 
 def advanced_search(request):
     # cards = Cards.objects.order_by('title')[:50]
-    query = 'select * from cards where title = "Vulture"'
+    query = 'select * from cards where title = "Black Bolt"'
     cards = Cards.objects.raw(query)
     # cards = Cards.objects.raw('SELECT * FROM cards WHERE power LIKE CONCAT("%", %s, "%") ORDER BY cost ASC', ['Illuminati'])
 
