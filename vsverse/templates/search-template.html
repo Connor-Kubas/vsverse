@@ -1,16 +1,58 @@
 <div class="search-container">
-    {% comment %} <form method="GET" action='search/'> {% endcomment %}
-    <form method="get" action='search/' autocomplete="off">
-        {% comment %} <input type="text" name="data" class="search-input"></input> {% endcomment %}
-        <input class="search-input"
-               name="q"
-               placeholder="Add a card"
-               hx-get="{% url 'partial_search' deck_id=deck.id %}"
-               hx-target="#results"
-               hx-trigger="input delay:.5s"
-        >
-    </form>
-    <section id="results">
-        {% include 'partial_results.html' %}
-    </section>
+    
+    <a href="/" class="home-button">Home</a>
+
+    <div class="search-stuff">
+        <form method="get" action='search/' autocomplete="off">
+            {% comment %} <input type="text" name="data" class="search-input"></input> {% endcomment %}
+            <input class="search-input"
+                name="q"
+                placeholder="Add a card"
+                hx-get="{% url 'partial_search' deck_id=deck.id %}"
+                hx-target="#results"
+                hx-trigger="input delay:.5s"
+            >
+        </form>
+        <section id="results">
+            {% include 'partial_results.html' %}
+        </section>
+    </div>
+
+    <div class="user">
+    </div>
 </div>
+
+<style>
+
+    .search-container {
+        background-color: black;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        /* margin-top: 5%; */
+        width: 100%;
+        height: 5%;
+    }
+
+    .home-button {
+        text-decoration: none;
+        color: white;
+        font-family: 'Open Sans';
+    }
+
+    .search-input {
+        margin: 5px;
+        width: 500px;
+        height: 40px;
+        border-radius: 2000000px;
+        outline: none;
+        text-align: center;
+        font-size: 1em;
+    }
+
+    .user {
+        {% comment %} height: 100%;
+        width: 10%; {% endcomment %}
+    }
+
+</style>
