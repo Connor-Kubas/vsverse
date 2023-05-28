@@ -40,7 +40,7 @@
 <div class="row location">
     {% for deck_card in deck %}
         {% if deck_card.card.type == 'Location' %} 
-        <div class="image-container" style="position: relative; display: inline-block;">           
+        <div class="image-container">           
             {% card card=deck_card.card %}
         </div>
         {% endif %}
@@ -49,8 +49,22 @@
 
 <style>
 
-    .card {
+    .image-container {
+        width: 223px;
+        height: 313px;
         margin-right: 15px;
+        transition: transform .2s ease-in-out;
+        border-radius: 18px;
+        z-index: 5;
+        object-fit: fill;
+        position: relative;
+        display: inline-block;
+    }
+
+    .image-container:hover {
+        position: relative;
+        z-index: 9999 !important;
+        transform: scale(1.5);
     }
 
 </style>

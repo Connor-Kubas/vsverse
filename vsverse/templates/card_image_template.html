@@ -1,8 +1,8 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
-    <img id="0" src="{% static 'images/'|add:file %}" alt="Image 1" class="overlay-image card-image" style=" transition: transform .2s ease-in-out;">
-    
+    <img src="{% static 'images/'|add:file %}" style="object-fit: fill;">
+
     <div class="quantity-modify" style="position: absolute; top: 40%; right: 0; transform: translateY(-50%); display: flex; flex-direction: column;">
     </div>
 
@@ -10,21 +10,4 @@
     .image-button-add + .image-button-sub {
         margin-top: 3em;
     }
-
-    .card-image {
-        {% comment %} padding-right: 15px; {% endcomment %}
-        margin-right: 15px;
-        transition: transform .2s ease-in-out;
-        z-index: 5;
-        border-radius: 18px;
-        width: 223px;
-        height: 313px;
-    }
-
-    .card-image:hover {
-        position: relative;
-        z-index: 9999 !important;
-        transform: scale(1.5);
-    }
-    
 </style>
