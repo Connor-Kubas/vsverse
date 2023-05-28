@@ -21,6 +21,13 @@ def deck(request, deck_id):
     deck_cards = DeckCards.objects.filter(deck_id=deck_id)
     deck = Decks.objects.filter(id=deck_id)
 
+    # for card in deck_cards:
+    #     try:
+    #         print(card.card.card_image.image_name)
+    #     except:
+    #         print('didnt work')
+    
+
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
 
     for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
@@ -103,7 +110,6 @@ def create_deck_modal(request):
     return render(request, 'partials/create-deck-modal.html')
 
 def create_deck(request):
-    print('it made it')
     deck_name = request.POST.get('deck_name')
     # deck = Decks
     # deck.title = deck_name
@@ -116,8 +122,13 @@ def create_deck(request):
 
 def advanced_search(request):
     # cards = Cards.objects.order_by('title')[:50]
-    query = 'select * from cards where title = "Black Bolt"'
-    cards = Cards.objects.raw(query)
+    # query = 'select * from deck_cards where deck_id = 6"'
+    # cards = Cards.objects.raw(query)
+    deck_cards = DeckCards.objects.filter(deck_id=5)
+    cards = [card.card for card in deck_cards]
+    # for card in cards:
+    #     print(card.card)
+    
     # cards = Cards.objects.raw('SELECT * FROM cards WHERE power LIKE CONCAT("%", %s, "%") ORDER BY cost ASC', ['Illuminati'])
 
 

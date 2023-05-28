@@ -1,17 +1,17 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
-<div class="image-container" style="position: relative; display: inline-block;">
-    <img id="0" src="{% static 'images/'|add:file %}" alt="Image 1" class="overlay-image card" style=" transition: transform .2s ease-in-out;">
+    <img id="0" src="{% static 'images/'|add:file %}" alt="Image 1" class="overlay-image card-image" style=" transition: transform .2s ease-in-out;">
+    
     <div class="quantity-modify" style="position: absolute; top: 40%; right: 0; transform: translateY(-50%); display: flex; flex-direction: column;">
     </div>
-</div>
+
 <style>
     .image-button-add + .image-button-sub {
         margin-top: 3em;
     }
 
-    .card {
+    .card-image {
         {% comment %} padding-right: 15px; {% endcomment %}
         margin-right: 15px;
         transition: transform .2s ease-in-out;
@@ -21,7 +21,7 @@
         height: 313px;
     }
 
-    .card:hover {
+    .card-image:hover {
         position: relative;
         z-index: 9999 !important;
         transform: scale(1.5);

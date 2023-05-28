@@ -1,12 +1,20 @@
 from django import template
 from django.template.loader import render_to_string
+from ..models import CardImages
 
 register = template.Library()
 
 @register.simple_tag
-def card(file):
-    context = {'file': file}
-    return render_to_string('card_image_template.html', context)
+def card(card):
+    # card_image = CardImages.objects.filter(card_id=card.id)
+
+    if hasattr(card, 'card_image'):
+        file = card.card_image.image_name + '.' + card.card_image.image_type
+        context = {'file': file}
+
+        return render_to_string('card_image_template.html', context)
+
+    return card_template(card)
 
 @register.simple_tag
 def search(deck):
@@ -16,6 +24,13 @@ def search(deck):
 
 @register.simple_tag
 def display_method(method, deck):
+
+    
+
+    # for card in deck:
+    #     if hasattr(card.card, 'card_image'):
+    #         print('display_method')
+
     context = {'deck': deck}
     if method == 'row':
         return render_to_string('row-template.html', context)
@@ -37,10 +52,9 @@ def quantity(deck, card_type):
 
     return sum(1 for card in cards if card.type == card_type)
 
-@register.inclusion_tag('card-template.html')
+@register.simple_tag
 def card_template(card):
     # image_name = ''
-
     range_name = ''
     flight_name = ''
 
@@ -55,7 +69,6 @@ def card_template(card):
         flight_name = 'concealed_flight'
 
     if card.visible == 'Visible' and card.type == 'Character':
-        print('character')
         image_name = 'new_character'
     elif card.visible == 'Concealed':
         image_name = 'new_character_concealed'
@@ -81,4 +94,4 @@ def card_template(card):
         'flight_name': flight_name,
     }
 
-    return context
+    return render_to_string('card-template.html', context)

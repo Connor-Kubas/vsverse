@@ -1,31 +1,56 @@
 {% load static %}
 {% load card_tags %}
 
+{% comment %} <div class="row character">
+    {% for deck_card in deck %}
+        {% if deck_card.card.type == 'Character' %}
+            {% card card=deck_card.card.card_image %}
+        {% endif %}
+    {% endfor %}
+</div> {% endcomment %}
+
 <div class="row character">
-    {% for card in deck %}
-        {% if card.card.type == 'Character' %}
-            {% card file=card.card.card_image.image_name|add:"."|add:card.card.card_image.image_type %}
+    {% for deck_card in deck %}
+        {% if deck_card.card.type == 'Character' %}  
+        <div class="image-container" style="position: relative; display: inline-block;">       
+            {% card card=deck_card.card %}
+        </div>
         {% endif %}
     {% endfor %}
 </div>
+
 <div class="row plot-twist">
-    {% for card in deck %}
-        {% if card.card.type == 'Plot Twist' %}
-        {% card file=card.card.card_image.image_name|add:"."|add:card.card.card_image.image_type %}
+    {% for deck_card in deck %}
+        {% if deck_card.card.type == 'Plot Twist' %}    
+        <div class="image-container" style="position: relative; display: inline-block;">        
+            {% card card=deck_card.card %}
+        </div>
         {% endif %}
     {% endfor %}
 </div>
 <div class="row equipment">
-    {% for card in deck %}
-        {% if card.card.type == 'Equipment' %}
-        {% card file=card.card.card_image.image_name|add:"."|add:card.card.card_image.image_type %}
+    {% for deck_card in deck %}
+        {% if deck_card.card.type == 'Equipment' %}   
+        <div class="image-container" style="position: relative; display: inline-block;">         
+            {% card card=deck_card.card %}
+        </div>
         {% endif %}
     {% endfor %}
 </div>
 <div class="row location">
-    {% for card in deck %}
-        {% if card.card.type == 'Location' %}
-        {% card file=card.card.card_image.image_name|add:"."|add:card.card.card_image.image_type %}
+    {% for deck_card in deck %}
+        {% if deck_card.card.type == 'Location' %} 
+        <div class="image-container" style="position: relative; display: inline-block;">           
+            {% card card=deck_card.card %}
+        </div>
         {% endif %}
     {% endfor %}
 </div>
+
+<style>
+
+    .card {
+        margin-right: 15px;
+    }
+
+</style>

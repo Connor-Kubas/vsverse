@@ -184,8 +184,6 @@ class Cards(models.Model):
     range = models.CharField(max_length=10, blank=True, null=True)
     visible = models.CharField(max_length=20, blank=True, null=True)
 
-    # card_image = models.OneToOneField()
-
     class Meta:
         managed = False
         db_table = 'cards'
