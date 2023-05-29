@@ -10,29 +10,14 @@
     <div class="search-form">
 
         <form method="get" action="/advanced-search-get/">
-            <input 
-                name="title"
-                placeholder="Title"
-                type="text"
-                hx-get="{% url 'advanced-search-get' %}"
-                {% comment %} hx-trigger="input delay:.5s" {% endcomment %}
-                hx-target="#results"
-            >
-            
-            <input 
-                name="version"
-                placeholder="Version"
-                type="text"
-                hx-get="{% url 'advanced-search-get' %}"
-                {% comment %} hx-trigger="input delay:.5s" {% endcomment %}
-                hx-target="#results"
-            >
-            <input type="submit">
+
+            {% include "partials/card-search.html" %}
+
         </form>
 
     </div>
 
-    <div class="results">
+    <div id="results">
         {% include "partials/advanced_search_results.html" %}
     </div>
 
@@ -47,11 +32,14 @@
     }
 
     .search-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 40%;
         height: 100%;
     }
 
-    .results {
+    #results {
         width: 60%;
         height: 100%;
         overflow: auto;

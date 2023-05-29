@@ -1,8 +1,23 @@
 {% load static %}
 {% load card_tags %}
 
+<div class="wrapper">
+
 {% for card in cards %}
     <div class="image-container">
     {% card card %}
     </div>
 {% endfor %}
+
+</div>
+
+<style>
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+
+</style>

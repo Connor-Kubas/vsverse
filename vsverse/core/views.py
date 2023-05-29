@@ -138,19 +138,16 @@ def advanced_search(request):
     return render(request, 'advanced-search.html', context)
 
 def advanced_search_get(request):
-
-
     title = request.GET.get('title')
     version = request.GET.get('version')
 
     cards = Cards.objects.all()
 
     if title:
-        cards = cards.filter(title=title)
+        cards = cards.filter(title__icontains=title)
     
     if version:
-        cards = cards.filter(version=version)
-
+        cards = cards.filter(version__icontains=version)
 
     context = {'cards': cards}
 

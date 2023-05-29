@@ -5,8 +5,8 @@
         background-image: url('../../static/images/empty_card.png');
         display: flex;
         background-size: cover;
-        width: 294px;
-        height: 410px;
+        width: 441px;
+        height: 615px;
         border-radius: 18px;
     ">
     <div class="cost" style="
@@ -45,6 +45,8 @@
         ">
         {% comment %} <p>Superman</p> {% endcomment %}
         <input type="text" 
+            name="title"
+            placeholder="Title"
         style="
             width: 100%;
             height: 100%;
@@ -66,7 +68,10 @@
         text-align: center;
     ">
         {% comment %} <p>Metropolis Marvel</p> {% endcomment %}
-        <input type="text"  style="
+        <input type="text"
+            name="version"
+            placeholder="Version"
+            style="
         
             width: 100%;
             height: 100%;
@@ -179,28 +184,4 @@
         <h3>5</h3>
     </div>
 </div>
-</div>
-
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    body {
-        background-color: darkgrey;
-    }
-
-    .affiliation {
-        {% comment %} background-color: red; {% endcomment %}
-    }
-
-    .cost {
-        {% comment %} background-color: red; {% endcomment %}
-    }
-
-
-    .power {
-        {% comment %} background-color: blue; {% endcomment %}
-    }
-</style>
+<input type="submit" value="Search" hidden="true">
