@@ -6,15 +6,21 @@ register = template.Library()
 
 @register.simple_tag
 def card(card):
+    width = 294
+    height = 410
     # card_image = CardImages.objects.filter(card_id=card.id)
 
     if hasattr(card, 'card_image'):
         file = card.card_image.image_name + '.' + card.card_image.image_type
-        context = {'file': file}
+        context = {
+            'file': file,
+            'width': width,
+            'height': height,
+        }
 
         return render_to_string('card_image_template.html', context)
 
-    return card_template(card)
+    return card_template(card, width, height)
 
 @register.simple_tag
 def search(deck):
@@ -53,7 +59,7 @@ def quantity(deck, card_type):
     return sum(1 for card in cards if card.type == card_type)
 
 @register.simple_tag
-def card_template(card):
+def card_template(card, width, height):
     # image_name = ''
     range_name = ''
     flight_name = ''
@@ -92,6 +98,8 @@ def card_template(card):
         'image_name': image_name,
         'range_name': range_name,
         'flight_name': flight_name,
+        'width': width,
+        'height': height,
     }
 
     return render_to_string('card-template.html', context)

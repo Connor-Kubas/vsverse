@@ -1,3 +1,10 @@
 {% load static %}
 
-<img src="{% static 'images/'|add:file %}" style="width: 223px; height: 100%; border-radius: 18px;">
+<img 
+    src="{% static 'images/'|add:file %}"
+    style="
+        width: {{ width }}px;
+        height: {{ height }}px;
+        border-radius: 18px;
+    "
+>
