@@ -122,8 +122,9 @@ def create_deck(request):
 
 def advanced_search(request):
     # cards = Cards.objects.order_by('title')[:50]
-    query = 'select * from cards where title = "Muramasa Blade"'
-    cards = Cards.objects.raw(query)
+    # query = 'select * from cards where title = "Muramasa Blade"'
+    # cards = Cards.objects.raw(query)
+    cards = []
     # deck_cards = DeckCards.objects.filter(deck_id=5)
     # cards = [card.card for card in deck_cards]
     # for card in cards:
@@ -137,13 +138,20 @@ def advanced_search(request):
     return render(request, 'advanced-search.html', context)
 
 def advanced_search_get(request):
-    title_query = request.GET.get('query')
 
-    # query = 'select * from cards where title = "' + title_query + '";'
+
+    title = request.GET.get('title')
+    version = request.GET.get('version')
+
+    cards = Cards.objects.all()
+
+    if title:
+        cards = cards.filter(title=title)
     
+    if version:
+        cards = cards.filter(version=version)
 
-    # cards = Cards.objects.raw(query)
-    cards = Cards.objects.filter(title=title_query)
+
     context = {'cards': cards}
 
     return render(request, 'advanced-search.html', context)
