@@ -7,6 +7,8 @@
         background-size: cover;
         width: 294px;
         height: 410px;
+        {% comment %} width: 147px;
+        height: 205px; {% endcomment %}
         width: 223px;
         height: 313px;
         border-radius: 18px;
@@ -17,12 +19,12 @@
         margin-left: 2%;
         margin-top: 7%;
         color: #ffcf4f;
-        font-size: 1em;
+        {% comment %} font-size: 100%; {% endcomment %}
         text-align: center;
         font-family: 'badhouse';
         text-shadow: 3px 3px black;
     ">
-        <h2>{{ card.cost }}</h2>
+        <h2 style="font-size:  %;">{{ card.cost }}</h2>
     </div>
     <div class="title"
         style="
@@ -69,7 +71,6 @@
         line-height: 100%;
         margin-top: 95%;
         margin-left: -90%;
-        bottom: 130px;
         width: 90%;
         height: 19%;
         color: black;
@@ -82,7 +83,7 @@
         margin-left: -77.8%;
         width: 15px;
         height: 15px;
-        background-image: url('../static/images/card_templates/{{ range_name }}.png');
+        background-image: url('/static/images/card_templates/{{ range_name }}.png');
         background-size: contain;
     "></div>
     <div class="flight" style="
@@ -90,7 +91,7 @@
         margin-left: -5.1%;
         width: 15px;
         height: 15px;
-        background-image: url('../static/images/card_templates/{{ flight_name }}.png');
+        background-image: url('/static/images/card_templates/{{ flight_name }}.png');
         background-size: contain;
     "></div>
 

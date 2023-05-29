@@ -1,13 +1,3 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
-    <img src="{% static 'images/'|add:file %}" style="object-fit: fill;">
-
-    <div class="quantity-modify" style="position: absolute; top: 40%; right: 0; transform: translateY(-50%); display: flex; flex-direction: column;">
-    </div>
-
-<style>
-    .image-button-add + .image-button-sub {
-        margin-top: 3em;
-    }
-</style>
+<img src="{% static 'images/'|add:file %}" style="width: 223px; height: 100%; border-radius: 18px;">

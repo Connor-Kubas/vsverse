@@ -41,7 +41,6 @@ def deck(request, deck_id):
     return render(request, 'deck.html', context)
 
 def partial_search(request, deck_id):
-    print('test')
     if request.htmx:
       search = request.GET.get('q')
 
@@ -86,6 +85,7 @@ def decrement_quantity(request, deck_id, card_id):
     return HttpResponse(str(deck_card.quantity))
 
 def add_table_row(request, deck_id, card_id):
+    print('it made it here')
     try:
         deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
         deck_card.quantity += 1
@@ -118,20 +118,32 @@ def create_deck(request):
     deck.save()
 
     
-    # return render(request, 'index.html')
+    return render(request, 'index.html')
 
 def advanced_search(request):
     # cards = Cards.objects.order_by('title')[:50]
-    # query = 'select * from deck_cards where deck_id = 6"'
-    # cards = Cards.objects.raw(query)
-    deck_cards = DeckCards.objects.filter(deck_id=5)
-    cards = [card.card for card in deck_cards]
+    query = 'select * from cards where title = "Muramasa Blade"'
+    cards = Cards.objects.raw(query)
+    # deck_cards = DeckCards.objects.filter(deck_id=5)
+    # cards = [card.card for card in deck_cards]
     # for card in cards:
     #     print(card.card)
     
     # cards = Cards.objects.raw('SELECT * FROM cards WHERE power LIKE CONCAT("%", %s, "%") ORDER BY cost ASC', ['Illuminati'])
 
 
+    context = {'cards': cards}
+
+    return render(request, 'advanced-search.html', context)
+
+def advanced_search_get(request):
+    title_query = request.GET.get('query')
+
+    # query = 'select * from cards where title = "' + title_query + '";'
+    
+
+    # cards = Cards.objects.raw(query)
+    cards = Cards.objects.filter(title=title_query)
     context = {'cards': cards}
 
     return render(request, 'advanced-search.html', context)

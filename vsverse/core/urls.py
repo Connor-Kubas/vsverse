@@ -22,6 +22,8 @@ urlpatterns = [
     path('create_deck/', views.create_deck, name='create_deck'),
 
     path('advanced-search/', views.advanced_search, name="advanced-search"),
+    path('advanced-search-get/', views.advanced_search_get, name='advanced-search-get'),
+
     path('card-template/', views.card_template, name="card-template"),
 
     path('card-search', views.card_search, name='card-search'),

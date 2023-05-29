@@ -4,9 +4,19 @@
 {% load card_tags %}
 
 {% block content %}
+<form method="get" action="/advanced-search-get/">
+    <input 
+        type="text"
+        hx-get="{% url 'advanced-search-get' %}"
+        hx-trigger="input delay:.5s"
+        hx-target="#results"
+        name="query"
+    >
+    {% comment %} <input type="submit"> {% endcomment %}
+</form>
 
-{% for card in cards %}
-    {% card_template card %}
-{% endfor %}
+<div class="results">
+    {% include "partials/advanced_search_results.html" %}
+</div>
 
 {% endblock %}
