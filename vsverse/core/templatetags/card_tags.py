@@ -5,9 +5,7 @@ from ..models import CardImages
 register = template.Library()
 
 @register.simple_tag
-def card(card):
-    width = 294
-    height = 410
+def card(card, width=294, height=410):
     # card_image = CardImages.objects.filter(card_id=card.id)
 
     if hasattr(card, 'card_image'):

@@ -5,22 +5,31 @@
 
 {% block content %}
 
-<div class="advanced-container">
+<div class="advanced-wrapper">
 
-    <div class="search-form">
-
-        <form method="get" action="/advanced-search-get/" autocomplete="off">
-
-            {% include "partials/card-search.html" %}
-
-            <input type="submit" value="Search" hidden="true">
-
-        </form>
-
+    <div class="menu-bar">
+        <a href="/" class="home-button"><img src="{% static 'images/house_icon.png' %}" width="25px" height="25px" style="filter: invert(1);"></a>
+        {% comment %} <i class="fa-solid fa-house"></i> {% endcomment %}
     </div>
 
-    <div id="results">
-        {% include "partials/advanced_search_results.html" %}
+    <div class="advanced-container">
+
+        <div class="search-form">
+
+            <form method="get" action="/advanced-search-get/" autocomplete="off">
+
+                {% include "partials/card-search.html" %}
+
+                <input type="submit" value="Search" hidden="true">
+
+            </form>
+
+        </div>
+
+        <div id="results">
+            {% include "partials/advanced_search_results.html" %}
+        </div>
+
     </div>
 
 </div>
@@ -30,7 +39,7 @@
     .advanced-container {
         display: flex;
         width: 100vw;
-        height: 100vh;
+        height: 95vh;
     }
 
     .search-form {
@@ -46,6 +55,28 @@
         height: 100%;
         overflow: auto;
         background-color: rgb(10, 10, 10);
+    }
+
+    .advanced-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-bar {
+        display: flex;
+        height: 5vh;
+        background-color: black;
+        align-items: center;
+    }
+
+    .home-button {
+        margin-left: 2%;
+        text-decoration: none;
+        color: white;
+    }
+
+    .home-button:hover {
+        filter: invert(20%);
     }
 
 </style>
