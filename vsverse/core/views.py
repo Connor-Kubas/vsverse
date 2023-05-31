@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.http import HttpResponse
 from .models import Cards
 from .models import Decks
@@ -7,6 +8,7 @@ from .models import DeckCards
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.shortcuts import redirect
 
 # Create your views here.
 def index(request):
@@ -17,16 +19,9 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def deck(request, deck_id):
+def deck(request, deck_id, display_method="row"):
     deck_cards = DeckCards.objects.filter(deck_id=deck_id)
-    deck = Decks.objects.filter(id=deck_id)
-
-    # for card in deck_cards:
-    #     try:
-    #         print(card.card.card_image.image_name)
-    #     except:
-    #         print('didnt work')
-    
+    deck = Decks.objects.filter(id=deck_id)  
 
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
 
@@ -36,6 +31,8 @@ def deck(request, deck_id):
     context = {
         'deck_cards': deck_cards,
         'deck': deck,
+        'deck_id': deck_id,
+        'display_method': display_method,
     }
 
     return render(request, 'deck.html', context)
@@ -180,3 +177,22 @@ def card_template(request):
 def card_search(request):
 
     return render(request, 'partials/card-search.html')
+
+def change_display_method(request, deck_id):
+    display_method = request.GET.get('view-select')
+    deck_cards = DeckCards.objects.filter(deck_id=deck_id)
+    deck = Decks.objects.filter(id=deck_id)  
+
+    card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
+
+    for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
+        card.quantity = quantity
+
+    context = {
+        'deck_cards': deck_cards,
+        'deck': deck,
+        'deck_id': deck_id,
+        'display_method': display_method,
+    }
+
+    return render(request, 'deck.html', context)

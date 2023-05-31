@@ -1,19 +1,13 @@
 {% load static %}
 {% load card_tags %}
 
-{% comment %} <div class="row character">
-    {% for deck_card in deck %}
-        {% if deck_card.card.type == 'Character' %}
-            {% card card=deck_card.card.card_image %}
-        {% endif %}
-    {% endfor %}
-</div> {% endcomment %}
+{% comment %} {% include 'partials/toolbar.html' %} {% endcomment %}
 
 <div class="row character">
     {% for deck_card in deck %}
         {% if deck_card.card.type == 'Character' %}  
         <div class="image-container" style="position: relative; display: inline-block;">       
-            {% card card=deck_card.card width=223 height=313 %}
+            {% card card=deck_card.card width='265' height='369' %}
         </div>
         {% endif %}
     {% endfor %}
@@ -23,7 +17,7 @@
     {% for deck_card in deck %}
         {% if deck_card.card.type == 'Plot Twist' %}    
         <div class="image-container" style="position: relative; display: inline-block;">        
-            {% card card=deck_card.card width=223 height=313 %}
+            {% card card=deck_card.card width='265' height='369'  %}
         </div>
         {% endif %}
     {% endfor %}
@@ -32,7 +26,7 @@
     {% for deck_card in deck %}
         {% if deck_card.card.type == 'Equipment' %}   
         <div class="image-container" style="position: relative; display: inline-block;">         
-            {% card card=deck_card.card width=223 height=313 %}
+            {% card card=deck_card.card width='265' height='369'  %}
         </div>
         {% endif %}
     {% endfor %}
@@ -41,7 +35,7 @@
     {% for deck_card in deck %}
         {% if deck_card.card.type == 'Location' %} 
         <div class="image-container">           
-            {% card card=deck_card.card width=223 height=313 %}
+            {% card card=deck_card.card width='265' height='369'  %}
         </div>
         {% endif %}
     {% endfor %}
@@ -50,10 +44,10 @@
 <style>
 
     .image-container {
-        width: 223px;
-        height: 313px;
-        margin-right: 15px;
-        transition: transform .2s ease-in-out;
+        width: 265px;
+        height: 369px;
+        margin-right: 10px;
+        transition: transform .1s ease-in-out;
         z-index: 5;
         position: relative;
         display: inline-block;
@@ -62,7 +56,34 @@
     .image-container:hover {
         position: relative;
         z-index: 9999 !important;
-        transform: scale(1.4);
+        transform: scale(1.2);
+    }
+
+    .row {
+        padding-left: 5%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: rgb(41, 41, 41);
+        height: 450px;
+        width: 100%;
+        padding-right: 10%;
+        {% comment %} border: 5px solid black; {% endcomment %}
+    }
+
+    .character {
+        background-color: rgb(73, 29, 28);
+        overflow: auto;
+    }
+    
+    .plot-twist {
+        background-color: rgb(23, 29, 56);
+        overflow: auto;
+    }
+    
+    .location {
+        background-color: rgb(72, 97, 75);
+        overflow: auto;
     }
 
 </style>

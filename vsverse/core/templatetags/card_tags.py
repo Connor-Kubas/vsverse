@@ -28,13 +28,6 @@ def search(deck):
 
 @register.simple_tag
 def display_method(method, deck):
-
-    
-
-    # for card in deck:
-    #     if hasattr(card.card, 'card_image'):
-    #         print('display_method')
-
     context = {'deck': deck}
     if method == 'row':
         return render_to_string('row-template.html', context)

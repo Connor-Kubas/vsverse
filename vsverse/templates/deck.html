@@ -7,12 +7,8 @@
 
 {% search deck=deck %}
 
-{% display_method method="row" deck=deck_cards %}
-{% comment %} {% display_method method="table" deck=deck_cards %} {% endcomment %}
-{% comment %} {% display_method method="stack" deck=deck_cards %} {% endcomment %}
+{% include 'partials/toolbar.html' %}
 
-{% comment %} {% for deck_card in deck_cards %}
-    {{ deck_card.card.card_image.image_name }}
-{% endfor%} {% endcomment %}
+{% display_method method=display_method deck=deck_cards %}
 
 {% endblock %}

@@ -27,6 +27,8 @@ urlpatterns = [
     path('card-template/', views.card_template, name="card-template"),
 
     path('card-search', views.card_search, name='card-search'),
+
+    path('change_display_method/<int:deck_id>/', views.change_display_method, name='change_display_method'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

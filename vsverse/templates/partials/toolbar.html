@@ -1,0 +1,51 @@
+<div class="toolbar">
+    <div class="" style="width: 10%; height: 90%;"></div>
+    <div class="" style="width: 50px; height: 90%;"></div>
+    {% comment %} <div class="" style="background-color: blue; width: 50px; height: 90%;"></div> {% endcomment %}
+    <div class="view-select-container">
+        <form method="get">
+            <select
+                class="view-select"
+                name="view-select" 
+                {% comment %} hx-get="{% url 'change_display_method' deck_id=1 %}" {% endcomment %}
+                onchange="changeDisplayMethod(this.value)">
+                <option value="row">Row</option>
+                <option value="table">Table</option>
+                <option value="stack">Stack</option>
+                <option disabled selected value> -- select a display method -- </option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<script>
+    function changeDisplayMethod(method) {
+        const url = `{% url 'change_display_method' deck_id=deck_id %}?view-select=${method}`;
+        window.location.href = url;
+    }
+</script>
+
+<style>
+    .toolbar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: rgb(10, 0, 20);
+        width: 100vw;
+        height: 5vh;
+    }
+
+    .view-select {
+        background-color: black;
+        color: white;
+        border: none;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .view-select-container {
+        height: 70%;
+        width: 10%;
+    }
+</style>
