@@ -9,9 +9,11 @@
 
     <div class="search-form">
 
-        <form method="get" action="/advanced-search-get/">
+        <form method="get" action="/advanced-search-get/" autocomplete="off">
 
             {% include "partials/card-search.html" %}
+
+            <input type="submit" value="Search" hidden="true">
 
         </form>
 

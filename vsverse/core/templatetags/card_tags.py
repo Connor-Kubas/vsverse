@@ -75,17 +75,17 @@ def card_template(card, width, height):
         flight_name = 'concealed_flight'
 
     if card.visible == 'Visible' and card.type == 'Character':
-        image_name = 'new_character_pic'
+        image_name = 'new_character'
     elif card.visible == 'Concealed':
-        image_name = 'new_character_concealed_pic'
+        image_name = 'new_character_concealed'
     elif card.visible == 'Concealed—Optional':
-        image_name = 'new_character_concealed_optional_pic'
+        image_name = 'new_character_concealed_optional'
     elif card.type == 'Equipment':
-        image_name = 'equipment_pic'
+        image_name = 'equipment'
     elif card.type == 'Plot Twist':
-        image_name = 'plot_twist_pic'
+        image_name = 'plot_twist'
     elif card.type == 'Location':
-        image_name = 'new_location_pic'
+        image_name = 'new_location'
     else:
         image_name = 'new_character'
 

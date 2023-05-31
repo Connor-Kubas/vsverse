@@ -121,17 +121,7 @@ def create_deck(request):
     return render(request, 'index.html')
 
 def advanced_search(request):
-    # cards = Cards.objects.order_by('title')[:50]
-    # query = 'select * from cards where title = "Muramasa Blade"'
-    # cards = Cards.objects.raw(query)
     cards = []
-    # deck_cards = DeckCards.objects.filter(deck_id=5)
-    # cards = [card.card for card in deck_cards]
-    # for card in cards:
-    #     print(card.card)
-    
-    # cards = Cards.objects.raw('SELECT * FROM cards WHERE power LIKE CONCAT("%", %s, "%") ORDER BY cost ASC', ['Illuminati'])
-
 
     context = {'cards': cards}
 
@@ -140,6 +130,13 @@ def advanced_search(request):
 def advanced_search_get(request):
     title = request.GET.get('title')
     version = request.GET.get('version')
+    power = request.GET.get('power')
+    cost = request.GET.get('cost')
+    flight = request.GET.get('flight')
+    range = request.GET.get('range')
+    attack = request.GET.get('attack')
+    defense = request.GET.get('defense')
+    affiliation = request.GET.get('affiliation')
 
     cards = Cards.objects.all()
 
@@ -148,6 +145,27 @@ def advanced_search_get(request):
     
     if version:
         cards = cards.filter(version__icontains=version)
+
+    if power:
+        cards = cards.filter(power__icontains=power)
+
+    if cost:
+        cards = cards.filter(cost=cost)
+
+    if flight:
+        cards = cards.filter(flight='1')
+
+    if range:
+        cards = cards.filter(range='1')
+
+    if attack:
+        cards = cards.filter(attack=attack)
+
+    if defense:
+        cards = cards.filter(defense=defense)
+
+    if affiliation:
+        cards = cards.filter(affiliation__icontains=affiliation)
 
     context = {'cards': cards}
 
