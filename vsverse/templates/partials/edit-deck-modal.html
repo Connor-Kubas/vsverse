@@ -1,6 +1,6 @@
 <div class="modal-content">
 
-    <h2>Choose which deck to edit</h2>
+    <h2 style="font-family: 'Open Sans light'; color: rgb(100, 100, 100); text-decoration: underline;">Choose which deck to edit</h2>
 
     <div class="modal-titles">
         {% for deck in decks %}
@@ -10,9 +10,37 @@
 
 </div>
 
-{% comment %} <style>
-    .container {
+<style>
+    .modal-titles {
         display: flex;
-
+        flex-direction: column;
+        justify-content: center;
+        {% comment %} align-items: center; {% endcomment %}
+        width: 100%;
+        height: 80%;
+        margin: 10px;
+        background-color: rgb(10, 0, 20);
+        overflow: auto;
+        border-radius: 20px;
     }
-</style> {% endcomment %}
+
+    .edit-deck-button {
+        width: 50%;
+        margin-top: 10px;
+        margin-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 30px;
+        text-decoration: none;
+        color: white;
+        border: 3px solid rgb(100, 100, 100);
+        border-radius: 20px;
+        transition: padding-right .15s ease-in-out;
+        font-family: 'Open Sans';
+    }
+
+    .edit-deck-button:hover {
+        padding-right: 30%;
+    }
+</style>

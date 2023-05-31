@@ -113,16 +113,6 @@ body {
     background-color:rgb(189, 234, 255)
 }
 
-.edit-deck-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    text-decoration: none;
-    color: black;
-    margin-top: 10%;
-}
-
 /* Modal */
 
  /* The Modal (background) */
@@ -145,21 +135,16 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    color: black !important;
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    color: rgb(255, 255, 255) !important;
+    background-color: #2c2c2c;
+    margin: 10% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
+    border: 10px solid #3d3d3d;
+    border-radius: 30px;
     width: 20%; /* Could be more or less, depending on screen size */
-    height: 40%;
+    height: 60%;
   }
 
-  .modal-titles {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-  
   /* The Close Button */
   .close {
     color: #aaa;
