@@ -27,22 +27,15 @@
     outline: none !important;
 }
 
-.row {
-    /* margin-top: 100px; */
-    padding-left: 5%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: rgb(41, 41, 41);
-    height: 470px;
-    width: 100%;
-}
+
 
 
 
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
 }
 
 body {
@@ -51,20 +44,7 @@ body {
     color: white;
 }
 
-.character {
-    background-color: rgb(73, 29, 28);
-    overflow: auto;
-}
 
-.plot-twist {
-    background-color: rgb(23, 29, 56);
-    overflow: auto;
-}
-
-.location {
-    background-color: rgb(72, 97, 75);
-    overflow: auto;
-}
 
 /* Index.html */
 

@@ -1,0 +1,65 @@
+{% load static %}
+{% load card_tags %}
+
+<div class="grid-container">
+
+    <div class="large-card">
+        
+    </div>
+
+    <div class="grid">
+
+        {% for deck_card in deck %}
+            <div class="image-container" onmouseover="changeLargeCard(this)">
+            {% card card=deck_card.card width='116' height='164' %}
+            </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script>
+    function changeLargeCard(element) {
+        const cardHTML = element.innerHTML;
+        const largeCard = document.querySelector('.large-card');
+        largeCard.innerHTML = cardHTML;
+
+        const cardElement = largeCard.querySelector('.card');
+        cardElement.style.width = '500px';
+        cardElement.style.height = '600px';
+    }
+</script>
+
+<style>
+
+   .grid-container {
+        display: flex;
+        height: 90%;
+        width: 100%;
+   }
+
+   .large-card {
+        height: 100%;
+        width: 50%;
+        background-color: rgb(20, 0, 10);
+   }
+
+   .grid {
+        margin: 0px;
+        padding: 0px;
+        gap: 0px;
+        height: 100%;
+        width: 50%;
+        background-color: rgb(40, 0, 20);
+        overflow: auto;
+   }
+
+   .image-container {
+        display: inline-block;
+        {% comment %} border: 10px solid white; {% endcomment %}
+        width: 116px;
+        height: 164px;
+   }
+
+</style>

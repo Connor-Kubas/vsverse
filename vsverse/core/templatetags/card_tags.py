@@ -35,6 +35,8 @@ def display_method(method, deck):
         return render_to_string('table-template.html', context)
     elif method == 'stack':
         return render_to_string('stack-template.html', context)
+    elif method == 'grid':
+        return render_to_string('grid-template.html', context)
     else:
         return ''
 
