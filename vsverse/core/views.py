@@ -196,3 +196,12 @@ def change_display_method(request, deck_id):
     }
 
     return render(request, 'deck.html', context)
+
+def deck_select(request):
+    decks = Decks.objects.all()  
+
+    context = {
+        'decks': decks,
+    }
+
+    return render(request, 'deck-select.html', context)
