@@ -8,6 +8,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/color_palette.css' %}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
@@ -22,6 +23,6 @@
     {% comment %} <script src="{% static 'js/dynamic_display_updating.js' %}"></script> {% endcomment %}
 
 </head>
-<body>
+<body class="dark-grey">
   {% block content %}{% endblock %}
 </body>
