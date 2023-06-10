@@ -40,9 +40,13 @@
             <div class="deck"></div> {% endcomment %}
 
             {% for deck in decks %}
-            <a href="/deck/{{deck.id}}/">
+            {% comment %} <a href="/deck/{{deck.id}}/">
                 <div class="deck">{{deck.title}}</div>
-            </a>
+            </a> {% endcomment %}
+
+            <div class="deck">
+                <a href="/deck/{{deck.id}}/" class="deck-link">{{deck.title}}</a>
+            </div>
             {% endfor %}
 
         </div>
@@ -103,6 +107,14 @@
     min-height: 200px;
 
     background-color: rgb(100, 0, 100);
+}
+
+.deck-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 a {
