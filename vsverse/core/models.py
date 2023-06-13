@@ -184,6 +184,8 @@ class Cards(models.Model):
     range = models.CharField(max_length=10, blank=True, null=True)
     visible = models.CharField(max_length=20, blank=True, null=True)
 
+    # card_image = models.ForeignKey(CardImages, on_delete=models.CASCADE)
+
     class Meta:
         managed = False
         db_table = 'cards'
@@ -198,6 +200,7 @@ class CardImages(models.Model):
     class Meta:
         managed = False
         db_table = 'card_images'
+
 
 class Decks(models.Model):
     id = models.AutoField(primary_key=True)

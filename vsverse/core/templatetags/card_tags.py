@@ -7,9 +7,11 @@ register = template.Library()
 @register.simple_tag
 def card(card, width=294, height=410):
     # card_image = CardImages.objects.filter(card_id=card.id)
-
     if hasattr(card, 'card_image'):
-        file = card.card_image.image_name + '.' + card.card_image.image_type
+        image_name = card.card_image.image_name
+        image_type = card.card_image.image_type
+        print(image_name)
+        file = image_name + '.' + image_type
         context = {
             'file': file,
             'width': width,
