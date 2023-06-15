@@ -1,26 +1,21 @@
 from django import template
 from django.template.loader import render_to_string
 from ..models import CardImages
+from ..models import Data
 
 register = template.Library()
 
 @register.simple_tag
 def card(card, width=294, height=410):
-    # card_image = CardImages.objects.filter(card_id=card.id)
-    if hasattr(card, 'card_image'):
-        image_name = card.card_image.image_name
-        image_type = card.card_image.image_type
-        print(image_name)
-        file = image_name + '.' + image_type
-        context = {
-            'file': file,
-            'width': width,
-            'height': height,
-        }
 
-        return render_to_string('card_image_template.html', context)
+    file = card.uuid + '.' + 'jpg'
+    context = {
+        'file': file,
+        'width': width,
+        'height': height,
+    }
 
-    return card_template(card, width, height)
+    return render_to_string('card_image_template.html', context)
 
 @register.simple_tag
 def search(deck):

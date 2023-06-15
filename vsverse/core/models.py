@@ -168,6 +168,26 @@ class AuthUserUserPermissions(models.Model):
 
 
 
+class Data(models.Model):
+    uuid = models.CharField(primary_key=True, max_length=36, blank=True, null=False)
+    title = models.CharField(max_length=40, blank=True, null=True)
+    version = models.CharField(max_length=60, blank=True, null=True)
+    card_number = models.CharField(max_length=10, blank=True, null=True)
+    rarity = models.CharField(max_length=1, blank=True, null=True)
+    rules = models.CharField(max_length=570, blank=True, null=True)
+    type = models.CharField(max_length=10, blank=True, null=True)
+    cost = models.IntegerField(blank=True, null=True)
+    attack = models.IntegerField(blank=True, null=True)
+    defense = models.IntegerField(blank=True, null=True)
+    affiliation = models.CharField(max_length=40, blank=True, null=True)
+    mutant = models.CharField(max_length=30, blank=True, null=True)
+    flight = models.IntegerField(blank=True, null=True)
+    range = models.IntegerField(blank=True, null=True)
+    visible = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'data'
 
 
 class Cards(models.Model):

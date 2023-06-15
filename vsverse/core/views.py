@@ -5,6 +5,7 @@ from .models import Cards
 from .models import Decks
 from .models import CardImages
 from .models import DeckCards
+from .models import Data
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -127,7 +128,7 @@ def advanced_search(request):
 def advanced_search_get(request):
     title = request.GET.get('title')
     version = request.GET.get('version')
-    power = request.GET.get('power')
+    rules = request.GET.get('rules')
     cost = request.GET.get('cost')
     flight = request.GET.get('flight')
     range = request.GET.get('range')
@@ -135,7 +136,9 @@ def advanced_search_get(request):
     defense = request.GET.get('defense')
     affiliation = request.GET.get('affiliation')
 
-    cards = Cards.objects.all()
+    cards = Data.objects.all()
+
+    cards = cards.filter().exclude(type__icontains='planet')
 
     if title:
         cards = cards.filter(title__icontains=title)
@@ -143,17 +146,17 @@ def advanced_search_get(request):
     if version:
         cards = cards.filter(version__icontains=version)
 
-    if power:
-        cards = cards.filter(power__icontains=power)
+    if rules:
+        cards = cards.filter(rules__icontains=rules)
 
     if cost:
         cards = cards.filter(cost=cost)
 
     if flight:
-        cards = cards.filter(flight='1')
+        cards = cards.filter(flight=1)
 
     if range:
-        cards = cards.filter(range='1')
+        cards = cards.filter(range=1)
 
     if attack:
         cards = cards.filter(attack=attack)
@@ -163,6 +166,8 @@ def advanced_search_get(request):
 
     if affiliation:
         cards = cards.filter(affiliation__icontains=affiliation)
+
+    cards = cards[:100]
 
     context = {'cards': cards}
 
