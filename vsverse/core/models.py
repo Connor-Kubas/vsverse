@@ -231,13 +231,11 @@ class Decks(models.Model):
         db_table = 'decks'        
 
 class DeckCards(models.Model):
-    # deck_id = models.IntegerField()
-    # card_id = models.IntegerField()
-
     deck = models.ForeignKey(Decks, on_delete=models.CASCADE)
-    card = models.ForeignKey(Cards, on_delete=models.CASCADE)
     quantity = models.IntegerField(blank=True, null=True)
     id = models.AutoField(primary_key=True)
+
+    card = models.ForeignKey(Cards, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
