@@ -175,7 +175,16 @@ def advanced_search_get(request):
 
     cards = cards[:100]
 
-    context = {'cards': cards}
+    plural_modifier = 's'
+
+    if cards.count() == 1:
+        plural_modifier = ''
+
+    context = {
+        'cards': cards,
+        'results_quantity': cards.count(),
+        'plural_modifier': plural_modifier
+    }
 
     return render(request, 'advanced-search.html', context)
 

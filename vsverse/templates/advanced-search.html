@@ -27,6 +27,11 @@
         </div>
 
         <div id="results">
+
+            <div class="results-info-container">
+                <p class="results-info">{{ results_quantity }} Result{{ plural_modifier }}</p>
+            </div>
+
             {% include "partials/advanced_search_results.html" %}
         </div>
 
@@ -35,6 +40,20 @@
 </div>
 
 <style>
+
+    .results-info-container {
+        display: flex;
+        align-items: center;
+        {% comment %} margin-left: 2%; {% endcomment %}
+        width: 100%;
+        height: 5%;
+        {% comment %} background-color: purple; {% endcomment %}
+    }
+
+    .results-info {
+        margin-left: 2%;
+        font-family: 'Open Sans';
+    }
 
     .advanced-container {
         display: flex;
