@@ -10,6 +10,8 @@ from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.shortcuts import redirect
+from django.db.models import Q
+from django.db.models import Count
 
 # Create your views here.
 def index(request):
@@ -140,6 +142,8 @@ def advanced_search_get(request):
 
     cards = cards.filter().exclude(type__icontains='planet')
 
+    
+    
     if title:
         cards = cards.filter(title__icontains=title)
     
@@ -166,6 +170,8 @@ def advanced_search_get(request):
 
     if affiliation:
         cards = cards.filter(affiliation__icontains=affiliation)
+
+    cards = filter_duplicate_printings(cards)
 
     cards = cards[:100]
 
@@ -210,3 +216,26 @@ def deck_select(request):
     }
 
     return render(request, 'deck-select.html', context)
+
+def filter_duplicate_printings(cards):
+    filtered_cards = cards.values('title', 'version').annotate(
+        title_count=Count('title'),
+        version_count=Count('version')
+    ).filter(
+        title_count__gt=1,
+        version_count__gt=1
+    ).order_by('title')
+
+    card_titles = [item['title'] for item in filtered_cards]
+    card_versions = [item['version'] for item in filtered_cards]
+
+    filtered_cards = cards.exclude(title__in=card_titles, version__in=card_versions)
+
+    duplicate_instances = cards.filter(
+        title__in=card_titles,
+        version__in=card_versions
+    ).distinct()[:1]
+
+    cards = filtered_cards.union(duplicate_instances)
+    
+    return cards
