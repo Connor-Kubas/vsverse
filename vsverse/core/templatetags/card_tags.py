@@ -141,16 +141,18 @@ def card_template(card, width, height):
 
 @register.simple_tag
 def b64_image(deck_id, deck):
-
     if deck.main_card:
         image_uuid = deck.main_card
     else:
-        deck_card = DeckCards.objects.filter(deck_id=deck_id)[:1].get()
-        card = Cards.objects.filter(id=deck_card.card_id).get()
+        try:
+            deck_card = DeckCards.objects.filter(deck_id=deck_id)[:1].get()
+            card = Cards.objects.filter(id=deck_card.card_id).get()
 
-        data = Data.objects.filter(title=card.title, version=card.version, type=card.type)[:1].get()
+            data = Data.objects.filter(title=card.title, version=card.version, type=card.type)[:1].get()
 
-        image_uuid = data.uuid
+            image_uuid = data.uuid
+        except DeckCards.DoesNotExist:
+            image_uuid = 'back'
 
     image = Image.open('static/images/cards_low_res/' + image_uuid + '.jpg')
 
