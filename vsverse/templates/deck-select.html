@@ -7,38 +7,14 @@
 
 <div class="container">
 
+    {% include 'partials/menu-bar.html' %}
+
     <div class="top">
     </div>
 
     <div class="deck-grid">
-        {% comment %} <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div>
-        <div class="deck"></div> {% endcomment %}
-
         {% for deck in decks %}
-        <div class="deck">
+        <div class="deck" style="background-image: url('data:image/jpeg;base64, {% b64_image deck_id=deck.id deck=deck %}');">
             <div class="gradient-mask">
             </div>
             <div class="info">
@@ -46,36 +22,6 @@
             </div>
         </div>
         {% endfor %}
-
-        <div class="deck">
-            <div class="gradient-mask">
-            </div>
-            <div class="info">
-                <p>Spider-man</p>
-            </div>
-        </div>
-        <div class="deck">
-            <div class="gradient-mask">
-            </div>
-            <div class="info">
-                <p>Spider-man</p>
-            </div>
-        </div>
-        <div class="deck">
-            <div class="gradient-mask">
-            </div>
-            <div class="info">
-                <p>Spider-man</p>
-            </div>
-        </div>
-        <div class="deck">
-            <div class="gradient-mask">
-            </div>
-            <div class="info">
-                <p>Spider-man</p>
-            </div>
-        </div>
-
     </div>
 
 </div>
@@ -85,16 +31,24 @@
 .container {
     display: flex;
     flex-direction: column;
-    background-color: darkgreen;
+    {% comment %} background-color: darkgreen; {% endcomment %}
     width: 100%;
     height: 100%;
+    z-index: 100;
     {% comment %} justify-content: flex-end; {% endcomment %}
 }
 
 .top {
     width: 100%;
-    height: 30%;
+    height: 20%;
+
+    {% comment %} width: 1920px;
+    height: 200px; {% endcomment %}
     background-color: rgb(0, 100, 100);
+    background-image: url('https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/04/jla-avengers-crossover.jpg');
+    background-position: right 0px top 60%;
+    background-size: cover;
+    filter: blur(10px);
 }
 
 /*
@@ -105,10 +59,11 @@
 }*/
 
 .deck-grid {
+    margin-top: 2%;
     height: 100%;
-    width: 1356px;
     max-width: 90%;
-    background-color: rgb(100, 100, 100);
+    min-width: 1500px;
+    {% comment %} background-color: rgb(100, 100, 100); {% endcomment %}
     overflow: auto;
     display: flex;
     flex-wrap: wrap;
@@ -117,7 +72,7 @@
 
 .gradient-mask {
     width: 100%;
-    height: 50%;
+    height: 60%;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), black);
     background-size: cover;
     background-position: center;
@@ -130,17 +85,17 @@
     align-items: center;
     font-family: 'Open Sans Light';
     width: 100%;
-    height: 20%;
+    height: 30%;
     background-color: black;
 }
 
 .deck {
-    background-image: url('/static/images/cover_fire_image.png');
+    {% comment %} background-image: url('/static/images/cover_fire_image.png'); {% endcomment %}
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    max-width: 275px;
-    min-width: 250px;
+    max-width: 240px;
+    {% comment %} min-width: 100px; {% endcomment %}
 
     height: 100%;
     max-height: 250px;
@@ -157,7 +112,12 @@
     {% comment %} align-items: center; {% endcomment %}
     {% comment %} row-gap: 20px; {% endcomment %}
 
-    border-radius: 15px;
+    {% comment %} border-image: linear-gradient(grey, black) 1; {% endcomment %}
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    
+    border: 3px solid rgb(50, 50, 50);
 }
 
 .deck-link {

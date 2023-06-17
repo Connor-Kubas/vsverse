@@ -2,8 +2,13 @@ from django import template
 from django.template.loader import render_to_string
 from ..models import CardImages
 from ..models import Data
+from ..models import DeckCards
+from ..models import Cards
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+from PIL import Image
+import base64
+from io import BytesIO
 
 register = template.Library()
 
@@ -133,3 +138,35 @@ def card_template(card, width, height):
     }
 
     return render_to_string('card-template.html', context)
+
+@register.simple_tag
+def b64_image(deck_id, deck):
+
+    if deck.main_card:
+        image_uuid = deck.main_card
+    else:
+        deck_card = DeckCards.objects.filter(deck_id=deck_id)[:1].get()
+        card = Cards.objects.filter(id=deck_card.card_id).get()
+
+        data = Data.objects.filter(title=card.title, version=card.version, type=card.type)[:1].get()
+
+        image_uuid = data.uuid
+
+    image = Image.open('static/images/cards_low_res/' + image_uuid + '.jpg')
+
+    top_x = 60  # X-coordinate of the top-left corner of the ROI
+    top_y = 70  # Y-coordinate of the top-left corner of the ROI
+    bottom_x = 300  # X-coordinate of the bottom-right corner of the ROI
+    bottom_y = 280  # Y-coordinate of the bottom-right corner of the ROI
+
+    # Crop the image to the specified ROI
+    cropped = image.crop((top_x, top_y, bottom_x, bottom_y))
+
+    img_file = BytesIO()
+    cropped.save(img_file, format="JPEG")
+    image_bytes = img_file.getvalue()
+    
+    im_b64_bytes = base64.b64encode(image_bytes)
+    im_b64_string = im_b64_bytes.decode('utf-8')
+
+    return im_b64_string

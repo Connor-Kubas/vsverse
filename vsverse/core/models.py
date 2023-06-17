@@ -225,6 +225,7 @@ class CardImages(models.Model):
 class Decks(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=30, blank=True, null=True)
+    main_card = models.CharField(max_length=36, blank=True, null=True)
 
     class Meta:
         managed = False

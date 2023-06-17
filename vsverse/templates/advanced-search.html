@@ -7,10 +7,7 @@
 
 <div class="advanced-wrapper">
 
-    <div class="menu-bar">
-        <a href="/" class="home-button"><img src="{% static 'images/house_icon.png' %}" width="25px" height="25px" style="filter: invert(1);"></a>
-        {% comment %} <i class="fa-solid fa-house"></i> {% endcomment %}
-    </div>
+    {% include 'partials/menu-bar.html' %}
 
     <div class="advanced-container">
 
@@ -79,23 +76,6 @@
     .advanced-wrapper {
         display: flex;
         flex-direction: column;
-    }
-
-    .menu-bar {
-        display: flex;
-        height: 5vh;
-        background-color: black;
-        align-items: center;
-    }
-
-    .home-button {
-        margin-left: 2%;
-        text-decoration: none;
-        color: white;
-    }
-
-    .home-button:hover {
-        filter: invert(20%);
     }
 
 </style>
