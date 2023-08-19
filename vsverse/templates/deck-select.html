@@ -40,8 +40,8 @@
 
 .top {
     width: 100%;
-    height: 20%;
-
+    min-height: 20%;
+    {% comment %} min-height:1px; {% endcomment %}
     {% comment %} width: 1920px;
     height: 200px; {% endcomment %}
     background-color: rgb(0, 100, 100);
@@ -61,10 +61,10 @@
 .deck-grid {
     margin-top: 2%;
     height: 100%;
-    max-width: 90%;
-    min-width: 1500px;
+    {% comment %} min-width: 1400px; {% endcomment %}
+    max-width: 1500px;
     {% comment %} background-color: rgb(100, 100, 100); {% endcomment %}
-    overflow: auto;
+    {% comment %} overflow: auto; {% endcomment %}
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -73,7 +73,7 @@
 .gradient-mask {
     width: 100%;
     height: 60%;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), black);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(40, 35, 40));
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -86,7 +86,7 @@
     font-family: 'Open Sans Light';
     width: 100%;
     height: 30%;
-    background-color: black;
+    background-color: rgb(40, 35, 40);
 }
 
 .deck {
@@ -103,7 +103,7 @@
 
     background-color: rgb(100, 0, 100);
 
-    margin: 20px;
+    margin: 10px;
 
     display: flex;
     flex-direction: column;
@@ -117,7 +117,7 @@
     border-style: solid;
     border-radius: 10px;
     
-    border: 3px solid rgb(50, 50, 50);
+    border: 3px solid rgb(50, 40, 60);
 }
 
 .deck-link {
