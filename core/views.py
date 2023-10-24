@@ -111,11 +111,15 @@ def create_deck_modal(request):
 
 def create_deck(request):
     deck_name = request.POST.get('deck_name')
-    deck = Decks(title=deck_name)
-    deck.save()
+    deck_object = Decks(title=deck_name)
+    deck_object.save()
 
-    # return render(request, 'index.html')
-    return redirect('index')
+    return redirect('/deck/'+str(deck_object.id)+'')
+
+def  create_deck_template(request):
+    return render(request, 'create-deck.html')
+
+    
 
 def advanced_search(request):
     cards = []
