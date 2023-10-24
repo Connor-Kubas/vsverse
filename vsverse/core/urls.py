@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -31,6 +31,9 @@ urlpatterns = [
     path('change_display_method/<int:deck_id>/', views.change_display_method, name='change_display_method'),
 
     path('deck-select', views.deck_select, name="deck-select"),
+
+    # This is the area for linking urls from other apps.
+    path('', include('playtest.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
