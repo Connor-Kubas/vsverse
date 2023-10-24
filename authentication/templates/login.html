@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container-center">
+   
+    <div class="header">
+    <h2>Sign in to VsVerse</h2>
+    
+    </div>
+    <div class="card">
+
+        <div class="username-container" style="margin-top: 10%;">
+            <p style="margin-bottom: 10px;">Username</p>
+            <input type="text" name="username" class="input">
+        </div>
+        <div class="password-container">
+            <p style="margin-bottom: 10px;">Password</p>
+            <input type="text" name="password" class="input">
+        </div>
+
+        <input type="button" value="Sign in" class="sign-in">
+
+    </div>
+
+    <div class="create-account">
+        <p style="margin-right: 5px;">Don't have an account?</p><a href="/sign-up" class="sign-up">Sign up</a>
+    </div>
+
+
+
+</div>
+
+<style>
+
+.header {
+    display: flex;
+    background-color: red;
+    height: 10%;
+}
+
+* {
+    font-family: 'Open Sans Light';
+}
+
+.sign-up {
+    color: rgb(91, 88, 187);
+}
+
+.create-account {
+    margin-top: 1%;
+    {% comment %} background-color: red; {% endcomment %}
+    width: 15%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+
+
+.sign-in {
+    background-color: rgb(91, 88, 187);
+    color: white;
+    border: none;
+    width: 80%;
+    border-radius: 10px;
+    {% comment %} font-size: 1.5em; {% endcomment %}
+    height: 20%;
+    padding: 5%;
+    margin-bottom: 10%;
+
+}
+
+.username-container, .password-container {
+    width: 80%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    {% comment %} height: 30%; {% endcomment %}
+    background-color: red;
+    margin-top: -10%;
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+
+.container-center {
+    display: flex;
+    {% comment %} height: 100vh;
+    width: 100vw; {% endcomment %}
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    background-color: rgb(23, 25, 30);
+    border: none;
+    border-radius: 10px;
+    {% comment %} border: 1px solid grey; {% endcomment %}
+    width: 100%;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 1em;
+    padding: 10px;
+    height: 20%;
+}
+
+</style>
+
+{% endblock %}

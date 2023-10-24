@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'django_htmx',
+    'authentication',
 ]
 
 MIDDLEWARE = [

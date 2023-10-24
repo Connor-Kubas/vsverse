@@ -12,9 +12,14 @@
             <img src="{% static 'images/vs_logo.png' %}" width="50px" height="50px">
         </div>
         <div class="search"></div>
+
+        <!-- need some logic for determining if the user is already logged in-->
+
         <div class="user">
-            <img src="{% static 'images/user_icon.png' %}" width="25px" height="25px">
-            <p>Connor Kubas</p>
+            {% comment %} <img src="{% static 'images/user_icon.png' %}" width="25px" height="25px"> {% endcomment %}
+            <a class="auth-button" href="/login">Sign in</a>
+            <a class="auth-button" href="/sign-up">Sign up</a>
+            
         </div>
     </div>
 
@@ -53,6 +58,25 @@
 
 <style>
 
+    .auth-button {
+        font-size: 0.9em;
+        background-color: none;
+        background: none;
+        color: white;
+        border: 1.5px solid white;
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .auth-button:hover {
+        cursor: pointer;
+        filter: invert(20%);
+    }
+    
     .logo, .search, .user {
         {% comment %} background-color: rgba(255, 255, 255, .2); {% endcomment %}
         width: 10%;
