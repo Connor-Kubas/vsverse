@@ -6,24 +6,27 @@
 
 <div class="container-center">
    
-    <div class="header">
+    {% comment %} <div class="header">
     <h2>Sign in to VsVerse</h2>
     
-    </div>
-    <div class="card">
-
+    </div> {% endcomment %}
+    {% comment %} <div class="card"> {% endcomment %}
+        <form method="POST" action="/login-user" class="card" autocomplete="false">
+        {% csrf_token %}
         <div class="username-container" style="margin-top: 10%;">
             <p style="margin-bottom: 10px;">Username</p>
             <input type="text" name="username" class="input">
         </div>
         <div class="password-container">
             <p style="margin-bottom: 10px;">Password</p>
-            <input type="text" name="password" class="input">
+            <input type="password" name="password" class="input">
         </div>
 
-        <input type="button" value="Sign in" class="sign-in">
+        <input type="submit" value="Sign in" class="sign-in">
 
-    </div>
+        </form>
+
+    {% comment %} </div> {% endcomment %}
 
     <div class="create-account">
         <p style="margin-right: 5px;">Don't have an account?</p><a href="/sign-up" class="sign-up">Sign up</a>
@@ -73,6 +76,10 @@
     padding: 5%;
     margin-bottom: 10%;
 
+}
+
+.sign-in:hover {
+    cursor: pointer;
 }
 
 .username-container, .password-container {
