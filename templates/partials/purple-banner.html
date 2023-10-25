@@ -1,52 +1,21 @@
-{% extends 'base.html' %}
-
-{% load static %}
-{% load card_tags %}
-
-{% block content %}
-
-
-<div class="container">
-    {% include 'partials/purple-banner.html' %}
-
-    <div class="page-select-container">
-
-        <div class="message-container">
-            <h1 class="message">VsVerse, for all your Vs. System needs</h1>
-        </div>
-
-        <div class="buttons">
     
-            <a href="/advanced-search" class="page-select-link">Advanced Card Search</a>
-
-            {% comment %} <button class="page-select-input page-select-input-modal" hx-get="edit-deck-modal" hx-target="#modal">
-                Edit Decks
-            </button> {% endcomment %}
-
-            <a href="/deck-select" class="page-select-link">My Decks</a>
-
-            {% comment %} <button class="page-select-input page-select-input-modal" hx-get="create-deck-modal" hx-target="#modal">
-                Create New Deck
-            </button> {% endcomment %}
-
-            <a href="/create-deck" class="page-select-link">Create Deck</a>
-
-            <!-- Modal -->
-            <div id="modal" class="modal"></div>  
-
+{% load static %}
+    
+    <div class="banner">
+        <a href="/">
+        <div class="logo">
+            <img src="{% static 'images/vs_logo.png' %}" width="50px" height="50px">
         </div>
-
+        </a>
+        <div class="search"></div>
+        <div class="user">
+            <img src="{% static 'images/user_icon.png' %}" width="25px" height="25px">
+            <p>Connor Kubas</p>
+        </div>
     </div>
 
-    <footer>
-        {% comment %} <p>VsVerse made by Connor Kubas</p> {% endcomment %}
-    </footer>
-
-</div>
-
-<style>
-
-    .logo, .search, .user {
+    <style>
+.logo, .search, .user {
         {% comment %} background-color: rgba(255, 255, 255, .2); {% endcomment %}
         width: 10%;
         height: 90%;
@@ -192,7 +161,3 @@
     cursor: pointer;
     } 
 </style>
-
-{% endblock %}
-
-
