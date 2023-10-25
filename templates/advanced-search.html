@@ -5,9 +5,11 @@
 
 {% block content %}
 
+{% include 'partials/purple-banner.html' %}
+
 <div class="advanced-wrapper">
 
-    {% include 'partials/menu-bar.html' %}
+    {% comment %} {% include 'partials/menu-bar.html' %} {% endcomment %}
 
     <div class="advanced-container">
 
@@ -49,13 +51,13 @@
 
     .results-info {
         margin-left: 2%;
-        font-family: 'Open Sans';
+        font-family: 'Open Sans Light';
     }
 
     .advanced-container {
         display: flex;
         width: 100vw;
-        height: 95vh;
+        height: 93vh;
     }
 
     .search-form {

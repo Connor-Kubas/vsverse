@@ -19,7 +19,8 @@ urlpatterns = [
 
     path('edit-deck-modal', views.edit_deck_modal, name='edit-deck-modal'),
     path('create-deck-modal', views.create_deck_modal, name='create-deck-modal'),
-    path('create_deck/', views.create_deck, name='create_deck'),
+    path('create-deck/', views.create_deck_template, name='create_deck'),
+    path('create-deck-data/', views.create_deck, name='create-deck-data'),
 
     path('advanced-search/', views.advanced_search, name="advanced-search"),
     path('advanced-search-get/', views.advanced_search_get, name='advanced-search-get'),
