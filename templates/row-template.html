@@ -1,8 +1,6 @@
 {% load static %}
 {% load card_tags %}
 
-{% comment %} {% include 'partials/toolbar.html' %} {% endcomment %}
-
 <div class="row character">
     {% for deck_card in deck %}
         {% if deck_card.card.type == 'Character' %}  
@@ -68,7 +66,6 @@
         height: 450px;
         width: 100%;
         padding-right: 10%;
-        {% comment %} border: 5px solid black; {% endcomment %}
     }
 
     .character {

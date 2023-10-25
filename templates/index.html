@@ -5,26 +5,6 @@
 
 {% block content %}
 
-
-    {% comment %} <div class="banner">
-        <div class="logo">
-            <img src="{% static 'images/vs_logo.png' %}" width="50px" height="50px">
-        </div>
-        <div class="search"></div>
-
-        <div class="user">
-            {% if request.session.user_id is defined %}
-            <a class="auth-button" href="/login">Sign in</a>
-            <a class="auth-button" href="/sign-up">Sign up</a>
-        
-            {% else %}
-            <a href="/profile" style="text-decoration: none; color: white;  width: 100%; display: flex; flex-direction: row; justify-content: center;">
-                <img src="{% static 'images/user_icon.png' %}" width="25px" height="25px" style="margin-right: 10px;">
-                <p>{{request.session.user_name}}</p>
-            </a>
-            {% endif %}
-        </div>
-    </div> {% endcomment %}
 <div class="container">
     {% include 'partials/purple-banner.html' %}
 
@@ -38,25 +18,16 @@
     
             <a href="/advanced-search" class="page-select-link">Advanced Card Search</a>
 
-            {% comment %} <button class="page-select-input page-select-input-modal" hx-get="edit-deck-modal" hx-target="#modal">
-                Edit Decks
-            </button> {% endcomment %}
-
             {% if request.session.user_id is not defined %}
-            <a href="/deck-select" class="page-select-link">My Decks</a>
+                <a href="/deck-select" class="page-select-link">My Decks</a>
             {% else %}
-            <a href="/" class="page-select-link">My Decks</a>
+                <a href="/" class="page-select-link">My Decks</a>
             {% endif %}
-            {% comment %} <button class="page-select-input page-select-input-modal" hx-get="create-deck-modal" hx-target="#modal"> {% endcomment %}
-
-            {% comment %} <button class="page-select-input page-select-input-modal" hx-get="create-deck-modal" hx-target="#modal">
-                Create New Deck
-            </button> {% endcomment %}
 
             {% if request.session.user_id is not defined %}
-            <a href="/create-deck" class="page-select-link">Create Deck</a>
+                <a href="/create-deck" class="page-select-link">Create Deck</a>
             {% else %}
-            <a href="/" class="page-select-link">Create Deck</a>
+                <a href="/" class="page-select-link">Create Deck</a>
             {% endif %}
             <!-- Modal -->
             <div id="modal" class="modal"></div>  
@@ -66,7 +37,6 @@
     </div>
 
     <footer>
-        {% comment %} <p>VsVerse made by Connor Kubas</p> {% endcomment %}
     </footer>
 
 </div>
@@ -93,7 +63,6 @@
     }
     
     .logo, .search {
-        {% comment %} background-color: rgba(255, 255, 255, .2); {% endcomment %}
         width: 10%;
         height: 90%;
     }
@@ -137,8 +106,6 @@
     .message-container {
         height: 20%;
         width: 100%;
-        {% comment %} background-color: red; {% endcomment %}
-        {% comment %} margin-bottom: 3%; {% endcomment %}
         display: flex;
         align-items: center;
     }
@@ -153,9 +120,7 @@
     footer {
         width: 100vw;
         height: 10%;
-        {% comment %} background-color: black; {% endcomment %}
         color: rgb(100, 100, 100);
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -164,7 +129,6 @@
     .page-select-container {
         width: 50vw;
         height: 50%;
-        {% comment %} background-color: blue; {% endcomment %}
         display: flex;
         justify-content: center;
         align-items: center;
@@ -205,7 +169,6 @@
     
     .page-select-input:hover, .page-select-link:hover {
         transform: scale(1.1);
-        {% comment %} background-color: red; {% endcomment %}
         background-color: rgba(255, 255, 255, .2);
     }
 
@@ -217,25 +180,21 @@
         top: 0;
         width: 100%; /* Full width */
         height: 100%; /* Full height */
-        /* overflow: auto; Enable scroll if needed */
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
     }
     
-
-
     .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
     }
     
-    .close:hover,
-    .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    .close:hover, .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
     } 
 </style>
 

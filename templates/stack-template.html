@@ -3,7 +3,6 @@
 
 <div class="column-container">
 
-    {% comment %} <h2> Characters {{ deck|quantity:"Character" }}</h2> {% endcomment %}
     <div class="column character-col" style="margin-bottom: 50%;">
         {% for card in deck %}
             {% if card.card.type == 'Character' %}
@@ -53,8 +52,6 @@
         flex-direction: column;
         align-items: center;
         margin-top: 15%
-        {% comment %} margin-left: 5%;
-        margin-right: 5%; {% endcomment %}
     }
 
     .column-container {
