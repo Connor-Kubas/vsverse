@@ -1,13 +1,24 @@
 <div class="toolbar">
     <div class="" style="width: 10%; height: 90%;"></div>
-    <div class="" style="width: 50px; height: 90%;"></div>
-    {% comment %} <div class="" style="background-color: blue; width: 50px; height: 90%;"></div> {% endcomment %}
+
+        <form method="get" action='search/' autocomplete="off" style="width:100%;">
+            <input class="search-input"
+                name="q"
+                placeholder="Search"
+                hx-get="{% url 'partial_search' deck_id=deck_id %}"
+                hx-target="#results"
+                hx-trigger="input delay:.5s"
+            >
+        </form>
+        <section id="results">
+            {% include 'partial_results.html' %}
+        </section>
+
     <div class="view-select-container">
         <form method="get">
             <select
                 class="view-select"
                 name="view-select" 
-                {% comment %} hx-get="{% url 'change_display_method' deck_id=1 %}" {% endcomment %}
                 onchange="changeDisplayMethod(this.value)">
                 <option value="row">Row</option>
                 <option value="table">Table</option>
@@ -31,9 +42,10 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background-color: rgb(10, 0, 20);
+        background-color: rgb(23, 25, 30);
+        background-color: rgba(255, 255, 255, .1);
         width: 100vw;
-        height: 5vh;
+        height: 10vh;
     }
 
     .view-select {
@@ -48,5 +60,15 @@
     .view-select-container {
         height: 70%;
         width: 10%;
+    }
+
+    .search-input {
+        background-color: rgb(23, 25, 30);
+        border: none;
+        color: white;
+        width: 10%;
+        height: 80%;
+        padding: 10px;
+        border-radius: 15px;
     }
 </style>
