@@ -41,8 +41,11 @@
                 Edit Decks
             </button> {% endcomment %}
 
+            {% if request.session.user_id is not defined %}
             <a href="/deck-select" class="page-select-link">My Decks</a>
-
+            {% else %}
+            <a href="/" class="page-select-link">My Decks</a>
+            {% endif %}
             <button class="page-select-input page-select-input-modal" hx-get="create-deck-modal" hx-target="#modal">
                 Create New Deck
             </button>
