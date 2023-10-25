@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% comment %} <button hx-get="/logout">Log Out</button> {% endcomment %}
+
+<form method="POST" action="/logout">
+    {% csrf_token %}
+    <button type="submit" style="font-size: 10em;">Log out</button>
+</form>
+{% endblock %}

@@ -4,23 +4,35 @@
 
 {% block content %}
 
-{% include 'partials/purple-banner.html' %}
 <div class="container-center">
-
-
    
-    <div class="card">
-        <form method="POST" action="/create-deck-data/" autocomplete="false">
+    {% comment %} <div class="header">
+    <h2>Sign in to VsVerse</h2>
+    
+    </div> {% endcomment %}
+    {% comment %} <div class="card"> {% endcomment %}
+        <form method="POST" action="/sign-up-user" class="card" autocomplete="false">
         {% csrf_token %}
-
         <div class="username-container" style="margin-top: 10%;">
-            <p style="margin-bottom: 10px;">Deck Name</p>
-            <input type="text" name="deck_name" class="input">
+            <p style="margin-bottom: 10px;">Username</p>
+            <input type="text" name="username" class="input">
+        </div>
+        <div class="password-container">
+            <p style="margin-bottom: 10px;">Password</p>
+            <input type="password" name="password" class="input">
         </div>
 
-        <input type="submit" value="Create" class="create">
+        <input type="submit" value="Sign up" class="sign-in">
+
         </form>
-    </div>
+
+    {% comment %} </div> {% endcomment %}
+
+    {% comment %} <div class="create-account">
+        <p style="margin-right: 5px;">Don't have an account?</p><a href="/sign-up" class="sign-up">Sign up</a>
+    </div> {% endcomment %}
+
+
 
 </div>
 
@@ -53,11 +65,11 @@
 }
 
 
-.create {
+.sign-in {
     background-color: rgb(91, 88, 187);
     color: white;
     border: none;
-    width: 90%;
+    width: 80%;
     border-radius: 10px;
     {% comment %} font-size: 1.5em; {% endcomment %}
     height: 20%;
@@ -66,7 +78,7 @@
 
 }
 
-.create:hover {
+.sign-in:hover {
     cursor: pointer;
 }
 
@@ -93,7 +105,7 @@
     {% comment %} height: 100vh;
     width: 100vw; {% endcomment %}
     width: 100%;
-    height: 93%;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

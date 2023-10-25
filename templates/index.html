@@ -6,6 +6,25 @@
 {% block content %}
 
 
+    {% comment %} <div class="banner">
+        <div class="logo">
+            <img src="{% static 'images/vs_logo.png' %}" width="50px" height="50px">
+        </div>
+        <div class="search"></div>
+
+        <div class="user">
+            {% if request.session.user_id is defined %}
+            <a class="auth-button" href="/login">Sign in</a>
+            <a class="auth-button" href="/sign-up">Sign up</a>
+        
+            {% else %}
+            <a href="/profile" style="text-decoration: none; color: white;  width: 100%; display: flex; flex-direction: row; justify-content: center;">
+                <img src="{% static 'images/user_icon.png' %}" width="25px" height="25px" style="margin-right: 10px;">
+                <p>{{request.session.user_name}}</p>
+            </a>
+            {% endif %}
+        </div>
+    </div> {% endcomment %}
 <div class="container">
     {% include 'partials/purple-banner.html' %}
 
@@ -23,14 +42,22 @@
                 Edit Decks
             </button> {% endcomment %}
 
+            {% if request.session.user_id is not defined %}
             <a href="/deck-select" class="page-select-link">My Decks</a>
+            {% else %}
+            <a href="/" class="page-select-link">My Decks</a>
+            {% endif %}
+            {% comment %} <button class="page-select-input page-select-input-modal" hx-get="create-deck-modal" hx-target="#modal"> {% endcomment %}
 
             {% comment %} <button class="page-select-input page-select-input-modal" hx-get="create-deck-modal" hx-target="#modal">
                 Create New Deck
             </button> {% endcomment %}
 
+            {% if request.session.user_id is not defined %}
             <a href="/create-deck" class="page-select-link">Create Deck</a>
-
+            {% else %}
+            <a href="/" class="page-select-link">Create Deck</a>
+            {% endif %}
             <!-- Modal -->
             <div id="modal" class="modal"></div>  
 
@@ -46,7 +73,26 @@
 
 <style>
 
-    .logo, .search, .user {
+    .auth-button {
+        font-size: 0.9em;
+        background-color: none;
+        background: none;
+        color: white;
+        border: 1.5px solid white;
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .auth-button:hover {
+        cursor: pointer;
+        filter: invert(20%);
+    }
+    
+    .logo, .search {
         {% comment %} background-color: rgba(255, 255, 255, .2); {% endcomment %}
         width: 10%;
         height: 90%;
@@ -67,6 +113,7 @@
         align-items: center;
         justify-content: space-around;
         font-size: 1.2em;
+        width: 10%;
     }
 
 

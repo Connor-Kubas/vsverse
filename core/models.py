@@ -1,4 +1,7 @@
 from django.db import models
+import uuid
+from authentication.models import User
+# from .models import User
 
 # # Create your models here.
 # # This is an auto-generated Django model module.
@@ -221,14 +224,25 @@ class CardImages(models.Model):
         managed = False
         db_table = 'card_images'
 
+# class User(models.Model):
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
+#     first_name = models.CharField(max_length=100)
+#     user_name = models.CharField(max_length=100)
+#     password = models.CharField(max_length=128) 
+
+#     class Meta:
+#         managed = False
+#         db_table = 'user'
 
 class Decks(models.Model):
     id = models.AutoField(primary_key=True)
+    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.CharField(max_length=36)
     title = models.CharField(max_length=30, blank=True, null=True)
     main_card = models.CharField(max_length=36, blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'decks'        
 
 class DeckCards(models.Model):
@@ -297,3 +311,4 @@ class Expansions(models.Model):
     class Meta:
         managed = False
         db_table = 'expansions'
+
