@@ -8,11 +8,8 @@
 {% include 'partials/purple-banner.html' %}
 <div class="container">
 
-    {% comment %} {% include 'partials/menu-bar.html' %} {% endcomment %}
-
     <div class="top">
     </div>
-    {% comment %} <h1>{{request.session.user_id}}</h1> {% endcomment %}
     <div class="deck-grid">
         {% for deck in decks %}
         <div class="deck" style="background-image: url('data:image/jpeg;base64, {% b64_image deck_id=deck.id deck=deck %}');">
@@ -32,19 +29,14 @@
 .container {
     display: flex;
     flex-direction: column;
-    {% comment %} background-color: darkgreen; {% endcomment %}
     width: 100%;
     height: 100%;
     z-index: 100;
-    {% comment %} justify-content: flex-end; {% endcomment %}
 }
 
 .top {
     width: 100%;
     min-height: 20%;
-    {% comment %} min-height:1px; {% endcomment %}
-    {% comment %} width: 1920px;
-    height: 200px; {% endcomment %}
     background-color: rgb(0, 100, 100);
     background-image: url('https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/04/jla-avengers-crossover.jpg');
     background-position: right 0px top 60%;
@@ -62,10 +54,7 @@
 .deck-grid {
     margin-top: 2%;
     height: 100%;
-    {% comment %} min-width: 1400px; {% endcomment %}
     max-width: 1500px;
-    {% comment %} background-color: rgb(100, 100, 100); {% endcomment %}
-    {% comment %} overflow: auto; {% endcomment %}
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -91,29 +80,18 @@
 }
 
 .deck {
-    {% comment %} background-image: url('/static/images/cover_fire_image.png'); {% endcomment %}
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     max-width: 240px;
-    {% comment %} min-width: 100px; {% endcomment %}
-
     height: 100%;
     max-height: 250px;
     min-height: 200px;
-
     background-color: rgb(100, 0, 100);
-
     margin: 10px;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    {% comment %} justify-content: center; {% endcomment %}
-    {% comment %} align-items: center; {% endcomment %}
-    {% comment %} row-gap: 20px; {% endcomment %}
-
-    {% comment %} border-image: linear-gradient(grey, black) 1; {% endcomment %}
     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
