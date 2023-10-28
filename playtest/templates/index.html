@@ -1,1 +1,59 @@
-sup
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load card_tags %}
+
+{% block content %}
+
+{% include 'templates/partials/purple-banner.html' %}
+
+    <div class="card-object" style="display: inline-block; position: absolute;" id="card">
+        {% card card 220 307 %}
+    </div> 
+
+<script>
+    // Get the draggable element
+    var draggableElement = document.getElementById("card");
+
+    var offsetX, offsetY;
+    var isDragging = false;
+
+    // Event listener for mouse down event
+    draggableElement.addEventListener("mousedown", function(event) {
+        event.preventDefault();
+        // Calculate the offset between mouse click position and element position
+        offsetX = event.clientX - draggableElement.getBoundingClientRect().left;
+        offsetY = event.clientY - draggableElement.getBoundingClientRect().top;
+        isDragging = true;
+    });
+
+    // Event listener for mouse move event
+    document.addEventListener("mousemove", function(event) {
+        if (isDragging) {
+            // Update element position based on mouse position
+            draggableElement.style.left = event.clientX - offsetX + "px";
+            draggableElement.style.top = event.clientY - offsetY + "px";
+        }
+    });
+
+    // Event listener for mouse up event
+    document.addEventListener("mouseup", function() {
+        // Stop dragging when the mouse button is released
+        isDragging = false;
+    });
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            // Generate a random index between 0 and i
+            const j = Math.floor(Math.random() * (i + 1));
+            
+            // Swap elements at i and j
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+</script>
+
+{% endblock %}
