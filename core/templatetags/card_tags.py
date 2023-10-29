@@ -15,7 +15,7 @@ register = template.Library()
 @register.simple_tag
 def card(card, width=294, height=410):
 
-    print(card.title + card.version)
+    # print(card.title + card.version)
     if (hasattr(card, 'uuid')): # Data object
         file = card.uuid + '.jpg'
     else:                       # Card object

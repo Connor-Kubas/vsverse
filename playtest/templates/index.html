@@ -8,11 +8,19 @@
 
 {% include 'templates/partials/purple-banner.html' %}
 
-    <div class="card-object" style="display: inline-block; position: absolute;" id="card">
+    {% comment %} {{ card.uuid }} {% endcomment %}
+    {% comment %} <div class="card-object" style="display: inline-block; position: absolute;" id="card">
         {% card card 220 307 %}
-    </div> 
+    </div>  {% endcomment %}
 
 <script>
+
+    var json_string = '{{card_json|escapejs|safe}}';
+    var json_objects = JSON.parse(json_string);
+
+    console.log(json_objects);
+    {% comment %} console.log(card_id); {% endcomment %}
+
     // Get the draggable element
     var draggableElement = document.getElementById("card");
 
