@@ -8,3 +8,7 @@
  1. Deck Building
  2. Card Database Search
  3. Playtesting Decks
+
+<h2>How to Use</h2>
+
+<p>To use this project activate the virtual python environment in `python_environments` and install the dependencies.</p>
