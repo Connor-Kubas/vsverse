@@ -1,7 +1,7 @@
 <div class="toolbar">
-    <div class="" style="width: 10%; height: 90%;"></div>
+    {% comment %} <div class="" style="width: 10%; height: 90%;"></div> {% endcomment %}
 
-        <form method="get" action='search/' autocomplete="off" style="width:100%;">
+        <form method="get" action='search/' autocomplete="off" style="width:10%;">
             <input class="search-input"
                 name="q"
                 placeholder="Search"
@@ -10,9 +10,12 @@
                 hx-trigger="input delay:.5s"
             >
         </form>
-        <section id="results">
+        {% comment %} <section id="results">
             {% include 'partial_results.html' %}
-        </section>
+        </section> {% endcomment %}
+
+    
+    <a href="/playtest/{{deck_id}}" style="color: white; text-decoration: none;">Playtest</a>
 
     <div class="view-select-container">
         <form method="get">
@@ -66,7 +69,7 @@
         background-color: rgb(23, 25, 30);
         border: none;
         color: white;
-        width: 10%;
+        width: 100%;
         height: 80%;
         padding: 10px;
         border-radius: 15px;

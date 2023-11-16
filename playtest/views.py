@@ -1,24 +1,33 @@
 # playtest/views.py
 from core.models import Data
+from core.models import DeckCards
+from core.models import Cards
+from django.db.models import Q
 
 from django.shortcuts import render
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 
-def show(request):
+def show(request, deck_id):
 
-    cards = Data.objects.all()
+    deck_cards = DeckCards.objects.filter(deck_id=deck_id)
 
-    cards = cards[:5]
+    card_ids = deck_cards.values_list('card_id', flat=True)
 
-    card_json = json.dumps(list(cards.values()))
+    cards = Cards.objects.filter(id__in=card_ids)
 
-    print(card_json)
+    # data = Data.objects.filter(title=card.title, version=card.version, type=card.type).exclude(type='Planet')[:1].get()
 
-    # print(cards)
+    data = []
+    for card in cards:
+        data_object = Data.objects.filter(title=card.title, version=card.version, type=card.type).exclude(type='Planet')[:1]
+        # print(data_object.values()[0])
+        data.append(data_object.values()[0])
+    # print(data)
+    card_json = json.dumps(data)
 
     context = {
-        'cards': cards,
+        'cards': data,
         'card_json': card_json
     }
 

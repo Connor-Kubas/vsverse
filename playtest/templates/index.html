@@ -8,6 +8,11 @@
 
 {% include 'templates/partials/purple-banner.html' %}
 
+    <div id="cards">
+    </div>
+
+    <div class="deck-button" onClick="addCard()"></div>
+
     {% comment %} {{ card.uuid }} {% endcomment %}
     {% comment %} <div class="card-object" style="display: inline-block; position: absolute;" id="card">
         {% card card 220 307 %}
@@ -15,14 +20,21 @@
 
 <script>
 
+    function addCard() {
+        var newImage = document.createElement('img');
+        newImage.src = '/static/images/cards_low_res/' + json_objects[0].uuid + '.jpg'; // Set the image source URL
+        newImage.class = 'card_image';
+        document.getElementById('cards').appendChild(newImage);
+
+        json_objects.shift();
+    }
+
     var json_string = '{{card_json|escapejs|safe}}';
     var json_objects = JSON.parse(json_string);
 
-    console.log(json_objects);
-    {% comment %} console.log(card_id); {% endcomment %}
+    json_objects = shuffleArray(json_objects);
 
-    // Get the draggable element
-    var draggableElement = document.getElementById("card");
+    console.log(json_objects);
 
     var offsetX, offsetY;
     var isDragging = false;
@@ -63,5 +75,27 @@
     }
 
 </script>
+
+<style>
+
+    .deck-button {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        background-image: url('/static/images/card_back.jpg');
+        width: 140px;
+        height: 200px;
+        background-size: contain;
+    }
+
+    .deck-button:hover {
+        cursor: pointer;
+    }
+
+    .cards, img {
+        user-select: none;
+    }
+
+</style>
 
 {% endblock %}
