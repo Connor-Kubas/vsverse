@@ -12,6 +12,16 @@
     <div class="left">
         <div class="input-container">
         <div class="form-row">
+            <label>Type</label>
+            <select class="select" name="type">
+                <option selected>Any</option>
+                <option>Character</option>
+                <option>Plot-Twist</option>
+                <option>Location</option>
+                <option>Equipment</option>
+            </select>
+        </div>
+        <div class="form-row">
             <label>Title</label>
             <input class="text" type="text" name="title">
         </div> 
@@ -42,42 +52,89 @@
         
         <div class="form-row">
             <label>Flight</label>
-            <div class="toggle">
-                <input type="radio" name="sizeBy" value="weight" id="sizeWeight" />
-                <label for="sizeWeight">Yes</label>
-                <input type="radio" name="sizeBy" value="dimensions" id="sizeDimensions1" checked="checked"/>
-                <label for="sizeDimensions1">Either</label>
-                <input type="radio" name="sizeBy" value="dimensions" id="sizeDimensions2" />
-                <label for="sizeDimensions2">No</label>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <input type="radio" name="sizeBy" value="weight" id="sizeWeight" />
+                    <label for="sizeWeight">Yes</label>
+                    <input type="radio" name="sizeBy" value="dimensions" id="sizeDimensions1" checked="checked"/>
+                    <label for="sizeDimensions1">Either</label>
+                    <input type="radio" name="sizeBy" value="dimensions" id="sizeDimensions2" />
+                    <label for="sizeDimensions2">No</label>
+                </div>
             </div>
 
         </div> 
         <div class="form-row">
             <label>Range</label>
-            <div class="toggle">
-                <input type="radio" name="apple" value="weight" id="applesauce" />
-                <label for="applesauce">Yes</label>
-                <input type="radio" name="apple" value="dimensions" id="lime" checked="checked"/>
-                <label for="lime">Either</label>
-                <input type="radio" name="apple" value="dimensions" id="pear" />
-                <label for="pear">No</label>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <input type="radio" name="apple" value="weight" id="applesauce" />
+                    <label for="applesauce">Yes</label>
+                    <input type="radio" name="apple" value="dimensions" id="lime" checked="checked"/>
+                    <label for="lime">Either</label>
+                    <input type="radio" name="apple" value="dimensions" id="pear" />
+                    <label for="pear">No</label>
+                </div>
             </div>
         </div> 
         <div class="form-row">
             <label>Rarity</label>
-            <label for="rare" value="Rare">Rare</label>
-            <input id="rare" value="Rare" type="radio" name="rarity">
-            <label for="uncommon" value="Rare">Uncommon</label>
-            <input id="uncommon" type="radio" name="rarity">
-            <label for="common" value="Rare">Common</label>
-            <input id="common" type="radio" name="rarity">
+            <div class="toggle-container">
+                <div class="toggle">
+                    <input type="radio" name="rarity" value="" id="any" checked="checked" />
+                    <label for="any">Any</label>
+                    <input type="radio" name="rarity" value="" id="common" />
+                    <label for="common">Common</label>
+                    <input type="radio" name="rarity" value="" id="uncommon"/>
+                    <label for="uncommon">Uncommon</label>
+                    <input type="radio" name="rarity" value="" id="rare" />
+                    <label for="rare">Rare</label>
+                </div>
+            </div>
         </div> 
-        <input type="radio" name="rarity">
-        <select name="type"></select>
-        <select name="mutant"></select>
-        <select name="expansion"></select>
+        <div class="form-row">
+            <label>Mutant</label>
+            <select class="select" name="mutant">
+                <option>Any</option>
+                <option>Mental</option>
+                <option>Physical</option>
+                <option>Mental</option>
+            </select>
         </div>
-
+        <div class="form-row">
+            <label>Expansion</label>
+            <select class="select" name="expansion">
+                <option value="any">Any</option>
+                <option value="MOR">MOR</option>
+                <option value="DOR">DOR</option>
+                <option value="MSM">MSM</option>
+                <option value="DSM">DSM</option>
+                <option value="MMK">MMK</option>
+                <option value="DGL">DGL</option>
+                <option value="MFF">MFF</option>
+                <option value="DBM">DBM</option>
+                <option value="MAV">MAV</option>
+                <option value="DJL">DJL</option>
+                <option value="MXM">MXM</option>
+                <option value="MXS">MXS</option>
+                <option value="DCR">DCR</option>
+                <option value="MHG">MHG</option>
+                <option value="DLS">DLS</option>
+                <option value="MTU">MTU</option>
+                <option value="EHB">EHB</option>
+                <option value="DWF">DWF</option>
+                <option value="MVL">MVL</option>
+                <option value="MCG">MCG</option>
+                <option value="DCL">DCL</option>
+                <option value="MEX">MEX</option>
+                <option value="DCX">DCX</option>
+                <option value="MAA">MAA</option>
+                <option value="MUN">MUN</option>
+                <option value="MEV">MEV</option>
+                <option value="MEQ">MEQ</option>
+                <option value="MUL">MUL</option>
+            </select>
+        </div>
     </div>
 
     <div class="right">
@@ -143,9 +200,39 @@
         background-color: rgb(20, 20, 20);
         overflow: auto;
     }
-</style>
 
+    .select {  
+        background-color:#17191e;
+        background-position: right 10px center;
+        background-repeat: no-repeat;
+        background-size: auto 50%;
+        border-radius: 2px;
+        border: none;
+        border: 1px solid grey;
+        border-radius: 20px;
+        color: #ffffff;
+        font-family: 'Open Sans Light';
+        font-size: 1.5em;
+        padding: 10px 30px 10px 10px;
+        margin-bottom: 30px;
+        {% comment %} width: 400px; {% endcomment %}
+        width: 70%;
+        height: 60px;
+        outline: none;
+        appearance: none;
+        text-align: center;
+      } 
+
+
+</style>
+{% comment %} Radiobutton styles {% endcomment %}
 <style>
+
+    .toggle-container {
+        width: 70%;
+        height: 60px;
+        {% comment %} background-color: red; {% endcomment %}
+    }
     
     /* TOGGLE STYLING */
     .toggle {
@@ -156,7 +243,7 @@
         flex-flow: row nowrap;
         justify-content: flex-start;
         align-items: stretch;
-    }
+    } 
     
     .toggle input {
         width: 0;
@@ -166,7 +253,8 @@
     }
     
     .toggle input + label {
-        width: 13rem;
+        width: 100%;
+        {% comment %} width: 13rem; {% endcomment %}
         {% comment %} width: 70%; {% endcomment %}
         margin: 0;
         padding: .75rem 2rem;
@@ -208,7 +296,7 @@
     .toggle input:checked + label {
         background-color: #5b58bb;
         color: #FFF;
-        box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+        box-shadow: 0 0 10px #5b58bb;
         border-color: #5b58bb;
         z-index: 1;
     }
@@ -249,7 +337,7 @@
             display: inline;
         }
     }
-    
+
     </style>
 
 {% endblock %}
