@@ -36,6 +36,7 @@ urlpatterns = [
     # This is the area for linking urls from other apps.
     path('', include('playtest.urls')),
     path('', include('authentication.urls')),
+    path('', include('search.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
