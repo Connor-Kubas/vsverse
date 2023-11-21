@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load card_tags %}
+
+{% block content %}
+
+{% include 'templates/partials/purple-banner.html' %}
+
+{% comment %} Emulate scryfall type search for: {% endcomment %}
+{% comment %} type, affiliation {% endcomment %}
+
+<div class="search-container">
+
+    <div class="left">
+        <div class="input-container">
+        <div class="form-row">
+            <label>Type</label>
+            <select class="select" name="type">
+                <option selected>Any</option>
+                <option>Character</option>
+                <option>Plot-Twist</option>
+                <option>Location</option>
+                <option>Equipment</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>Title</label>
+            <input class="text" type="text" name="title">
+        </div> 
+        <div class="form-row">
+            <label>Version</label>
+            <input class="text" type="text" name="version">
+        </div> 
+        <div class="form-row">
+            <label>Power</label>
+            <input class="text" type="text" name="version">
+        </div> 
+        <div class="form-row">
+            <label>Affilition</label>
+            <input class="text" type="text" name="version">
+        </div> 
+        <div class="form-row">
+            <label>Cost</label>
+            <input class="text" type="text" name="version">
+        </div> 
+        <div class="form-row">
+            <label>Attack</label>
+            <input class="text" type="text" name="version">
+        </div> 
+        <div class="form-row">
+            <label>Defense</label>
+            <input class="text" type="text" name="version">
+        </div> 
+        
+        <div class="form-row">
+            <label>Flight</label>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <input type="radio" name="sizeBy" value="weight" id="sizeWeight" />
+                    <label for="sizeWeight">Yes</label>
+                    <input type="radio" name="sizeBy" value="dimensions" id="sizeDimensions1" checked="checked"/>
+                    <label for="sizeDimensions1">Either</label>
+                    <input type="radio" name="sizeBy" value="dimensions" id="sizeDimensions2" />
+                    <label for="sizeDimensions2">No</label>
+                </div>
+            </div>
+
+        </div> 
+        <div class="form-row">
+            <label>Range</label>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <input type="radio" name="apple" value="weight" id="applesauce" />
+                    <label for="applesauce">Yes</label>
+                    <input type="radio" name="apple" value="dimensions" id="lime" checked="checked"/>
+                    <label for="lime">Either</label>
+                    <input type="radio" name="apple" value="dimensions" id="pear" />
+                    <label for="pear">No</label>
+                </div>
+            </div>
+        </div> 
+        <div class="form-row">
+            <label>Rarity</label>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <input type="radio" name="rarity" value="" id="any" checked="checked" />
+                    <label for="any">Any</label>
+                    <input type="radio" name="rarity" value="" id="common" />
+                    <label for="common">Common</label>
+                    <input type="radio" name="rarity" value="" id="uncommon"/>
+                    <label for="uncommon">Uncommon</label>
+                    <input type="radio" name="rarity" value="" id="rare" />
+                    <label for="rare">Rare</label>
+                </div>
+            </div>
+        </div> 
+        <div class="form-row">
+            <label>Mutant</label>
+            <select class="select" name="mutant">
+                <option>Any</option>
+                <option>Mental</option>
+                <option>Physical</option>
+                <option>Mental</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>Expansion</label>
+            <select class="select" name="expansion">
+                <option value="any">Any</option>
+                <option value="MOR">MOR</option>
+                <option value="DOR">DOR</option>
+                <option value="MSM">MSM</option>
+                <option value="DSM">DSM</option>
+                <option value="MMK">MMK</option>
+                <option value="DGL">DGL</option>
+                <option value="MFF">MFF</option>
+                <option value="DBM">DBM</option>
+                <option value="MAV">MAV</option>
+                <option value="DJL">DJL</option>
+                <option value="MXM">MXM</option>
+                <option value="MXS">MXS</option>
+                <option value="DCR">DCR</option>
+                <option value="MHG">MHG</option>
+                <option value="DLS">DLS</option>
+                <option value="MTU">MTU</option>
+                <option value="EHB">EHB</option>
+                <option value="DWF">DWF</option>
+                <option value="MVL">MVL</option>
+                <option value="MCG">MCG</option>
+                <option value="DCL">DCL</option>
+                <option value="MEX">MEX</option>
+                <option value="DCX">DCX</option>
+                <option value="MAA">MAA</option>
+                <option value="MUN">MUN</option>
+                <option value="MEV">MEV</option>
+                <option value="MEQ">MEQ</option>
+                <option value="MUL">MUL</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="right">
+    </div>
+
+</div>
+
+<style>
+    .search-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 93%;
+    }
+
+    .input-container {
+        width: 70%;
+    }
+
+    .form-row {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        border-bottom: 1px solid rgb(65, 65, 65);
+        align-items: center;
+    }
+
+    label {
+        font-family: 'Open Sans Light';
+        font-size: 1.5em;
+        width: 30%;
+    }
+
+    .text {
+        color: white;
+        font-family: 'Open Sans Light';
+        font-size: 2em;
+        width: 70%;
+        height: 60px;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        border: 1px solid grey;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .left {
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        background-color: rgb(23, 25, 30);
+        overflow: auto;
+    }
+    .right {
+        width: 50%;
+        height: 100%;
+        background-color: rgb(20, 20, 20);
+        overflow: auto;
+    }
+
+    .select {  
+        background-color:#17191e;
+        background-position: right 10px center;
+        background-repeat: no-repeat;
+        background-size: auto 50%;
+        border-radius: 2px;
+        border: none;
+        border: 1px solid grey;
+        border-radius: 20px;
+        color: #ffffff;
+        font-family: 'Open Sans Light';
+        font-size: 1.5em;
+        padding: 10px 30px 10px 10px;
+        margin-bottom: 30px;
+        {% comment %} width: 400px; {% endcomment %}
+        width: 70%;
+        height: 60px;
+        outline: none;
+        appearance: none;
+        text-align: center;
+      } 
+
+
+</style>
+{% comment %} Radiobutton styles {% endcomment %}
+<style>
+
+    .toggle-container {
+        width: 70%;
+        height: 60px;
+        {% comment %} background-color: red; {% endcomment %}
+    }
+    
+    /* TOGGLE STYLING */
+    .toggle {
+        margin: 0 0 1.5rem;
+        box-sizing: border-box;
+        font-size: 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+    } 
+    
+    .toggle input {
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: -9999px;
+    }
+    
+    .toggle input + label {
+        width: 100%;
+        {% comment %} width: 13rem; {% endcomment %}
+        {% comment %} width: 70%; {% endcomment %}
+        margin: 0;
+        padding: .75rem 2rem;
+        box-sizing: border-box;
+        position: relative;
+        display: inline-block;
+        {% comment %} border: solid 1px #DDD; {% endcomment %}
+        border: solid 1px grey;
+        {% comment %} background-color: #FFF; {% endcomment %}
+        background-color: #17191e;
+        font-size: 1rem;
+        line-height: 140%;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+        transition: border-color .15s ease-out, color .25s ease-out, background-color .15s ease-out, box-shadow .15s ease-out;
+    
+        &:first-of-type {
+            border-radius: 50px 0 0 50px;
+            border-right: none;
+        }
+    
+        {% comment %} &:not(:last-of-type) {
+            border-radius: 0;
+        } {% endcomment %}
+    
+        &:last-of-type {
+            border-radius: 0 50px 50px 0;
+            border-left: none;
+        }
+    }
+    
+    .toggle input:hover + label {
+        {% comment %} border-color: #213140; {% endcomment %}
+        border-color: white;
+        cursor: pointer;
+    }
+    
+    .toggle input:checked + label {
+        background-color: #5b58bb;
+        color: #FFF;
+        box-shadow: 0 0 10px #5b58bb;
+        border-color: #5b58bb;
+        z-index: 1;
+    }
+    
+    .toggle input:focus + label {
+        outline: dotted 1px #CCC;
+        outline-offset: .45rem;
+    }
+    
+    @media (max-width: 800px) {
+        .toggle input + label {
+            padding: .75rem .25rem;
+            flex: 0 0 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    
+    /* STYLING FOR THE STATUS HELPER TEXT FOR THE DEMO */
+    .status {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+    
+    .status span {
+        font-weight: 600;
+        color: #B6985A;
+    } 
+    
+    @media (max-width: 800px) {
+        .status span:first-of-type {
+            display: none;
+        }
+    
+        .status span:last-of-type {
+            display: inline;
+        }
+    }
+
+    </style>
+
+{% endblock %}
