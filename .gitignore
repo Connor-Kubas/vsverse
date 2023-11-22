@@ -1,3 +1,6 @@
 .env
 static/images/cards_low_res
 static/images/cards
+python_environment/
+# Lib/
+# core/__pycache__/

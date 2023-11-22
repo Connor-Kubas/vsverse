@@ -8,6 +8,8 @@
 
 {% include 'partials/toolbar.html' %}
 
-{% display_method method=display_method deck=deck_cards %}
+<div id="deck-container">
+    {% include 'stack-template.html' %}
+</div>
 
 {% endblock %}

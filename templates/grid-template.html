@@ -9,9 +9,9 @@
 
     <div class="grid">
 
-        {% for deck_card in deck %}
+        {% for deck_card in deck_cards %}
             <div class="image-container" onmouseover="changeLargeCard(this)">
-            {% card card=deck_card.card width='116' height='164' %}
+                {% card card=deck_card.card width='116' height='164' %}
             </div>
         {% endfor %}
 

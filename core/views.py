@@ -22,7 +22,7 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def deck(request, deck_id, display_method="row"):
+def deck(request, deck_id, display_method="stack"):
     deck_cards = DeckCards.objects.filter(deck_id=deck_id)
     deck = Decks.objects.filter(id=deck_id)  
 
@@ -45,7 +45,7 @@ def partial_search(request, deck_id):
       search = request.GET.get('q')
 
       if search:
-          cards = Cards.objects.filter(title__icontains=search)
+          cards = Cards.objects.filter(title__icontains=search)[:50]
       else:
           cards = Cards.objects.none()
 
@@ -201,7 +201,7 @@ def card_search(request):
 
 def change_display_method(request, deck_id):
     display_method = request.GET.get('view-select')
-    deck_cards = DeckCards.objects.filter(deck_id=deck_id)
+    deck_cards = DeckCards.objects.filter(deck_id=deck_id).order_by('card__cost')
     deck = Decks.objects.filter(id=deck_id)  
 
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
@@ -216,7 +216,7 @@ def change_display_method(request, deck_id):
         'display_method': display_method,
     }
 
-    return render(request, 'deck.html', context)
+    return render(request, display_method+'-template.html', context)
 
 def deck_select(request):
     decks = Decks.objects.filter(user_id=request.session['user_id'])  

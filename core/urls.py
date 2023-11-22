@@ -30,6 +30,8 @@ urlpatterns = [
     path('card-search', views.card_search, name='card-search'),
 
     path('change_display_method/<int:deck_id>/', views.change_display_method, name='change_display_method'),
+    # path('change_display_method/', views.change_display_method, name='change_display_method'),
+
 
     path('deck-select', views.deck_select, name="deck-select"),
 

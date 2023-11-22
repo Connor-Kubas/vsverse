@@ -1,51 +1,59 @@
-<div class="toolbar">
-    <div class="" style="width: 10%; height: 90%;"></div>
+{% load static %}
+{% load card_tags %}
 
-        <form method="get" action='search/' autocomplete="off" style="width:100%;">
-            <input class="search-input"
-                name="q"
-                placeholder="Search"
-                hx-get="{% url 'partial_search' deck_id=deck_id %}"
-                hx-target="#results"
-                hx-trigger="input delay:.5s"
-            >
-        </form>
-        <section id="results">
-            {% include 'partial_results.html' %}
-        </section>
+<div class="toolbar-container">
+    <div class="toolbar">
+        <div class="" style="width: 10%; height: 90%;"></div>
 
-    <div class="view-select-container">
-        <form method="get">
-            <select
-                class="view-select"
-                name="view-select" 
-                onchange="changeDisplayMethod(this.value)">
+            <form method="get" action='search/' autocomplete="off" style="width:100%;">
+                <input class="search-input"
+                    name="q"
+                    placeholder="Search"
+                    hx-get="{% url 'partial_search' deck_id=deck_id %}"
+                    hx-target="#results"
+                    hx-trigger="input delay:.5s"
+                >
+            </form>
+            <section id="results">
+                {% include 'partial_results.html' %}
+            </section>
+
+        <div class="view-select-container">
+            <select class="view-select" name="view-select" hx-get="/change_display_method/{{deck_id}}" hx-target="#deck-container">
+                <option value="stack" selected>Stack</option>
                 <option value="row">Row</option>
                 <option value="table">Table</option>
-                <option value="stack">Stack</option>
                 <option value="grid">Grid</option>
-                <option disabled selected value> -- select a display method -- </option>
             </select>
-        </form>
+        </div>
     </div>
 </div>
 
-<script>
+{% comment %} <script>
     function changeDisplayMethod(method) {
         const url = `{% url 'change_display_method' deck_id=deck_id %}?view-select=${method}`;
         window.location.href = url;
     }
-</script>
+</script> {% endcomment %}
 
 <style>
+
+    .toolbar-container {
+        width: 100%;
+        height: 12vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .toolbar {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background-color: rgb(23, 25, 30);
         background-color: rgba(255, 255, 255, .1);
-        width: 100vw;
-        height: 10vh;
+        width: 90%;
+        height: 60%;
+        margin-top: 25px;
+        border-radius: 10px;
     }
 
     .view-select {
@@ -56,6 +64,28 @@
         width: 100%;
         height: 100%;
     }
+
+    .view-select {  
+        background-color:#17191e;
+        background-position: right 10px center;
+        background-repeat: no-repeat;
+        background-size: auto 50%;
+        border-radius: 2px;
+        border: none;
+        border: 1px solid grey;
+        border-radius: 10px;
+        color: #ffffff;
+        font-family: 'Open Sans Light';
+        font-size: 1.2em;
+        {% comment %} padding: 10px 30px 10px 10px; {% endcomment %}
+        margin-bottom: 30px;
+        {% comment %} width: 400px; {% endcomment %}
+        width: 70%;
+        {% comment %} height: 60px; {% endcomment %}
+        outline: none;
+        appearance: none;
+        text-align: center;
+      } 
 
     .view-select-container {
         height: 70%;
@@ -69,6 +99,6 @@
         width: 10%;
         height: 80%;
         padding: 10px;
-        border-radius: 15px;
+        border-radius: 10px;
     }
 </style>

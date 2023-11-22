@@ -15,13 +15,13 @@ register = template.Library()
 @register.simple_tag
 def card(card, width=294, height=410):
 
-    print(card.title + card.version)
+    # print(card.title + card.version)
     if (hasattr(card, 'uuid')): # Data object
         file = card.uuid + '.jpg'
     else:                       # Card object
         data = Data.objects.filter(title=card.title, version=card.version, type=card.type).exclude(type='Planet')[:1].get()
         # data = get_data_from_card(card)
-        print(data)
+        # print(data)
         file = data.uuid + '.jpg'
     
     context = {
