@@ -23,7 +23,7 @@ def card(card, width=294, height=410):
         # data = get_data_from_card(card)
         # print(data)
         file = data.uuid + '.jpg'
-    
+        
     context = {
         'file': file,
         'width': width,

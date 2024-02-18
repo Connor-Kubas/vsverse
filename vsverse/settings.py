@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'core',
     'django_htmx',
     'authentication',
+    # 'deck_editor',
 ]
 
 MIDDLEWARE = [

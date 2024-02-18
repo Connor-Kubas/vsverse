@@ -5,14 +5,19 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('deck/<int:deck_id>/', views.deck, name='deck'),
+    # path('deck/<int:deck_id>/', views.deck, name='deck'),
     # path('deck/<str:deck_id>', views.deck, name='deck'),
     # path('deck/search/<str:data>', views.search, name="data"),
     # path('/deck/search/<str:data>', views.search, name="data"),
-    path('partial-search/<int:deck_id>/', views.partial_search, name='partial_search'),
+    path('partial-search/<int:deck_id>/', views.partial_search, name='partial-search'),
+
+
     path('view_deck', views.view_deck, name="view_deck"),
-    path('increment_quantity/<int:deck_id>/<int:card_id>/', views.increment_quantity, name='increment_quantity'),
-    path('decrement_quantity/<int:deck_id>/<int:card_id>/', views.decrement_quantity, name='decrement_quantity'),
+    # path('increment_quantity/<int:deck_id>/<int:card_id>/', views.increment_quantity, name='increment_quantity'),
+    # path('decrement_quantity/<int:deck_id>/<int:card_id>/', views.decrement_quantity, name='decrement_quantity'),
+
+    # New for adding cards
+    path('add-card/<int:deck_id>/<int:card_id>/', views.add_card, name="add-card"),
 
     path('add_table_row/<int:deck_id>/<int:card_id>/', views.add_table_row, name='add_table_row'),
     # path('add_from_search/<int:deck_id/<int:card_id>')
@@ -36,6 +41,7 @@ urlpatterns = [
     path('deck-select', views.deck_select, name="deck-select"),
 
     # This is the area for linking urls from other apps.
+    path('', include('deck_editor.urls')),
     path('', include('playtest.urls')),
     path('', include('authentication.urls')),
 ]

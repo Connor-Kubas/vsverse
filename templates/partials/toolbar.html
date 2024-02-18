@@ -3,38 +3,34 @@
 
 <div class="toolbar-container">
     <div class="toolbar">
-        <div class="" style="width: 10%; height: 90%;"></div>
+        <div class="input-container">
+            <input class="search-input" id="search-input"
+            name="q"
+            placeholder="Search"
+            hx-get="/partial-search/{{deck_id}}"
+            {% comment %} hx-get="/add-card/{{deck_id}}" {% endcomment %}
+            hx-target="#results"
+            hx-trigger="input delay:.5s"
+            >
+            
+            <div class="" style="width: 10%; height: 90%;"></div>
 
-            <form method="get" action='search/' autocomplete="off" style="width:100%;">
-                <input class="search-input"
-                    name="q"
-                    placeholder="Search"
-                    hx-get="{% url 'partial_search' deck_id=deck_id %}"
-                    hx-target="#results"
-                    hx-trigger="input delay:.5s"
-                >
-            </form>
-            <section id="results">
-                {% include 'partial_results.html' %}
-            </section>
-
-        <div class="view-select-container">
-            <select class="view-select" name="view-select" hx-get="/change_display_method/{{deck_id}}" hx-target="#deck-container">
-                <option value="stack" selected>Stack</option>
-                <option value="row">Row</option>
-                <option value="table">Table</option>
-                <option value="grid">Grid</option>
-            </select>
+            <div class="view-select-container">
+                <select class="view-select" name="view-select" hx-get="/change_display_method/{{deck_id}}" hx-target="#deck-container">
+                    <option value="stack" selected>Stack</option>
+                    <option value="row">Row</option>
+                    <option value="table">Table</option>
+                    <option value="grid">Grid</option>
+                </select>
+            </div>
         </div>
-    </div>
+    </div>        
 </div>
 
-{% comment %} <script>
-    function changeDisplayMethod(method) {
-        const url = `{% url 'change_display_method' deck_id=deck_id %}?view-select=${method}`;
-        window.location.href = url;
-    }
-</script> {% endcomment %}
+<section id="results">
+    {% comment %} {% include 'partial_results.html' %} {% endcomment %}
+</section>
+
 
 <style>
 
@@ -56,13 +52,12 @@
         border-radius: 10px;
     }
 
-    .view-select {
-        background-color: black;
-        color: white;
-        border: none;
-
+    .input-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
         width: 100%;
-        height: 100%;
+        height: 50%;
     }
 
     .view-select {  
@@ -81,6 +76,7 @@
         margin-bottom: 30px;
         {% comment %} width: 400px; {% endcomment %}
         width: 70%;
+        height: 100%;
         {% comment %} height: 60px; {% endcomment %}
         outline: none;
         appearance: none;
@@ -88,7 +84,7 @@
       } 
 
     .view-select-container {
-        height: 70%;
+        height: 100%;
         width: 10%;
     }
 
@@ -97,8 +93,9 @@
         border: none;
         color: white;
         width: 10%;
-        height: 80%;
-        padding: 10px;
+        height: 100%;
         border-radius: 10px;
+        text-align: center;
+        border: 1px solid grey;
     }
 </style>
