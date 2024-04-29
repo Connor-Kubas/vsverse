@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('deck/<int:deck_id>/', views.DisplayView.deck, name='deck'),
-    path('decks/<int:deck>/cards/<int:card>/increment/', views.ModifyDeckView.increment_card_quantity, name="increment"),
-    path('decks/<int:deck>/cards/<int:card>/decrement/', views.ModifyDeckView.decrement_card_quantity, name="decrement"),
+    path('deck/<int:deck_id>/cards/<int:deck_card>/increment', views.ModifyDeckView.increment_card_quantity, name="increment"),
+    path('deck/<int:deck_id>/cards/<int:deck_card>/decrement', views.ModifyDeckView.decrement_card_quantity, name="decrement"),
 ]
