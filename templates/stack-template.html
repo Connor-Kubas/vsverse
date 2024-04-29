@@ -8,7 +8,7 @@
             {% if card.card.type == 'Character' %}
                 <div class="stack-card">
                     <div class="card-hover">
-                        {% card card=card.card  width=265 height=369 %}
+                        {% include 'deck_editor/templates/components/card.html' with card=card.card %}
                     </div>
                 </div>
             {% endif %}
@@ -20,7 +20,7 @@
             {% if card.card.type == 'Plot Twist' %}
                 <div class="stack-card">
                     <div class="card-hover">
-                        {% card card=card.card  width=265 height=369 %}
+                        {% include 'deck_editor/templates/components/card.html' with card=card.card %}
                     </div>
                 </div>
             {% endif %}
@@ -32,7 +32,7 @@
             {% if card.card.type == 'Equipment' %}
                 <div class="stack-card">
                     <div class="card-hover">
-                        {% card card=card.card  width=265 height=369 %}
+                        {% include 'deck_editor/templates/components/card.html' with card=card.card %}
                     </div>
                 </div>
             {% endif %}
@@ -44,7 +44,7 @@
             {% if card.card.type == 'Location' %}
                 <div class="stack-card">
                     <div class="card-hover">
-                        {% card card=card.card  width=265 height=369 %}
+                        {% include 'deck_editor/templates/components/card.html' with card=card.card %}
                     </div>
                 </div>
             {% endif %}

@@ -1,23 +1,18 @@
 from django.shortcuts import render
-# from django.template.loader import render_to_string
-# from django.http import HttpResponse
-# from ..models import Cards
 from core.models import Decks
 from core.models import DeckCards
-# from ..models import CardImages
-# from ..models import Data
-# from django.db.models import F
-# from django.shortcuts import get_object_or_404
-# from django.http import JsonResponse
-# from django.shortcuts import redirect
-# from django.db.models import Q
-# from django.db.models import Count
+from core.models import Data
 
 def deck(request, deck_id, display_method="stack"):
     deck_cards = DeckCards.objects.filter(deck_id=deck_id).order_by('card__cost')
     deck = Decks.objects.filter(id=deck_id)  
 
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
+
+    # add uuid attribute to the card.
+
+    # for deck_card in deck_cards:
+    #     deck_card.card.
 
     for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
         card.quantity = quantity
@@ -30,3 +25,9 @@ def deck(request, deck_id, display_method="stack"):
     }
 
     return render(request, 'deck.html', context)
+
+# def getUUIDFromCard(card):
+#     # print(card)
+#     data = Data.objects.filter(title=card.title, version=card.version)
+
+#     return data.uuid

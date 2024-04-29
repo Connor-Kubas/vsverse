@@ -10,3 +10,4 @@ sys.path.append(current_dir)
 # print(sys.path)
 # exit()
 from view_directory import DisplayView
+from view_directory import ModifyDeckView
