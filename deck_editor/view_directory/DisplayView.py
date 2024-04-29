@@ -1,17 +1,17 @@
 from django.shortcuts import render
-from django.template.loader import render_to_string
-from django.http import HttpResponse
-from ..models import Cards
-from ..models import Decks
-from ..models import CardImages
-from ..models import DeckCards
-from ..models import Data
-from django.db.models import F
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
-from django.shortcuts import redirect
-from django.db.models import Q
-from django.db.models import Count
+# from django.template.loader import render_to_string
+# from django.http import HttpResponse
+# from ..models import Cards
+from core.models import Decks
+from core.models import DeckCards
+# from ..models import CardImages
+# from ..models import Data
+# from django.db.models import F
+# from django.shortcuts import get_object_or_404
+# from django.http import JsonResponse
+# from django.shortcuts import redirect
+# from django.db.models import Q
+# from django.db.models import Count
 
 def deck(request, deck_id, display_method="stack"):
     deck_cards = DeckCards.objects.filter(deck_id=deck_id).order_by('card__cost')
