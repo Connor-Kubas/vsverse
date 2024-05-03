@@ -12,6 +12,9 @@ def increment_card_quantity(request,deck_id, deck_card: DeckCards):
 def decrement_card_quantity(request, deck_id, deck_card):
     deck_card = modify_card_quantity(deck_card, -1)
 
+    if (deck_card.quantity <= 0):
+        deck_card.delete()
+
     return HttpResponse(str(deck_card.quantity))
 
 def modify_card_quantity(deck_card, value):

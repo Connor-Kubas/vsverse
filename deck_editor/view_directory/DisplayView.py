@@ -9,19 +9,17 @@ def deck(request, deck_id, display_method="stack"):
 
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
 
-    # add uuid attribute to the card.
-
-    # for deck_card in deck_cards:
-    #     deck_card.card.
-
+    total_cards = 0
     for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
         card.quantity = quantity
+        total_cards += quantity
 
     context = {
         'deck_cards': deck_cards,
         'deck': deck,
         'deck_id': deck_id,
         'display_method': display_method,
+        'total_cards': total_cards,
     }
 
     return render(request, 'deck.html', context)
