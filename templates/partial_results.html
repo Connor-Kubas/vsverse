@@ -1,38 +1,67 @@
 {% load static %}
 <div class="results-container">
 {% for card in cards %}
-    <form hx-post="/increment_quantity/{{ deck_id }}/{{ card.id }}/">
-        {% csrf_token %}
-        <input
-            type="button"
-            class="card-button"
-            id="add-card-button"
-            hx-get="{% url 'add_table_row' deck_id=deck_id card_id=card.id %}"
-            hx-target="#table"
-            hx-swap="beforeend"
-            onclick="ClearInputField();"
-            value="{{ card.title}}"
-        />
-    </form>
-
-    <p class="results results-title">{{ card.title}}</p>
-    
-    <p class="results results-version">{{ card.version }}</p>
-
+    <button 
+        hx-get="/add-card/{{deck_id}}/{{card.id}}"
+        hx-target=".{{card.container_type}}-col"
+        hx-swap="beforeend"
+        onClick="clearTextBox()">
+        <div class="result-button">
+            <p style="color: white;">{{card.title}}</p>
+            <p style="color: grey;">{{ card.version}}</p>
+        </div>
+    </button>
 {% endfor %}
 </div>
 
+<script>
+
+    function clearTextBox() {
+        var box = document.getElementById('search-input');
+        var results = document.getElementById('results');
+        box.value = '';
+        setTimeout(function() {
+            results.innerHTML = '';
+        }, 100); // Adjust the delay (in milliseconds) as needed
+    }
+
+</script>
+
 <style>
+
+    .result-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 15rem;
+        height: 4rem;
+        background-color: #2f3035;
+        margin-bottom: 5px;
+        border: 1px solid grey;
+        border-radius: 10px;
+    }
+
+    button {
+        border: none;
+        background: none;
+    }
+
     .results-container {
         position: absolute;
-        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        {% comment %} width: 30%; {% endcomment %}
         height: auto;
+        width: 22rem;
         max-height: 30vh;
         overflow: auto;
-        background-color: black;
+        background-color: #17191e;
         left: 50%;
-        margin-top: 2%;
+        {% comment %} margin-top: 2%; {% endcomment %}
         transform: translate(-50%);
+        {% comment %} border: 1px solid grey; {% endcomment %}
     }
 
     .results {

@@ -21,9 +21,9 @@ def card(card, width=294, height=410):
     else:                       # Card object
         data = Data.objects.filter(title=card.title, version=card.version, type=card.type).exclude(type='Planet')[:1].get()
         # data = get_data_from_card(card)
-        print(data)
+        # print(data)
         file = data.uuid + '.jpg'
-    
+        
     context = {
         'file': file,
         'width': width,

@@ -8,6 +8,19 @@
 
 {% include 'partials/toolbar.html' %}
 
-{% display_method method=display_method deck=deck_cards %}
+<h1>Total Cards in Deck: {{ total_cards }}</h1>
+<h2>Characters: {{ character_count }}</h2>
+<h2>Non-Characters: {{ non_character_count }}</h2>
+{% comment %} <h2>Card Types:</h2>
+<ul>
+    {% for card_type, count in card_types.items %}
+        <li>{{ card_type }}: {{ count }}</li>
+    {% endfor %}
+    <li>Non Character: {{ non_character_count }}</li>
+</ul> {% endcomment %}
+
+<div id="deck-container">
+    {% include 'stack-template.html' %}
+</div>
 
 {% endblock %}

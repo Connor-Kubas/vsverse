@@ -8,14 +8,14 @@
     <th>Version</th>
     <th>Cost</th>
 
-{% for deck_card in deck %}
+{% for deck_card in deck_cards %}
     <tr class="{% if deck_card.card.type == 'Character' %}character-row{% elif deck_card.card.type == 'Plot Twist' %}plot-twist-row{% elif deck_card.card.type == 'Location' %}location-row{% elif deck_card.card.type == 'Equipment' %}equipment-row{% else %}default{% endif %}">
         <td id="quantity-{{ deck_card.card.id }}">{{ deck_card.quantity }}</td>
         <td>{{ deck_card.card.title }}</td>
         <td>{{ deck_card.card.version }}</td>
         <td>{{ deck_card.card.cost }}</td>
 
-        <td>
+        {% comment %} <td>
             <button hx-get="{% url 'increment_quantity' deck_id=deck_card.deck_id card_id=deck_card.card.id %}" hx-trigger="click"
                     hx-swap="innerHTML" hx-target="#quantity-{{ deck_card.card.id }}">
                 +1
@@ -24,7 +24,7 @@
                     hx-swap="innerHTML" hx-target="#quantity-{{ deck_card.card.id }}">
                 -1
             </button>
-        </td>
+        </td> {% endcomment %}
 
     </tr>
 {% endfor %}

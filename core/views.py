@@ -22,41 +22,78 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def deck(request, deck_id, display_method="row"):
-    deck_cards = DeckCards.objects.filter(deck_id=deck_id)
-    deck = Decks.objects.filter(id=deck_id)  
+# def deck(request, deck_id, display_method="stack"):
+#     deck_cards = DeckCards.objects.filter(deck_id=deck_id).order_by('card__cost')
+#     deck = Decks.objects.filter(id=deck_id)  
 
-    card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
+#     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
 
-    for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
-        card.quantity = quantity
+#     for card, (_, quantity) in zip(deck_cards, card_ids_and_quantities):
+#         card.quantity = quantity
 
-    context = {
-        'deck_cards': deck_cards,
-        'deck': deck,
-        'deck_id': deck_id,
-        'display_method': display_method,
-    }
+#     context = {
+#         'deck_cards': deck_cards,
+#         'deck': deck,
+#         'deck_id': deck_id,
+#         'display_method': display_method,
+#     }
 
-    return render(request, 'deck.html', context)
+#     return render(request, 'deck.html', context)
 
 def partial_search(request, deck_id):
+
+    # hx-get="/add-card-to-deck/card" hx-target="area-where-the-cards-are"
+
+    # def add_card_to_deck(request, card_id)
+    #     return render(request, card-html)
+
     if request.htmx:
       search = request.GET.get('q')
 
       if search:
-          cards = Cards.objects.filter(title__icontains=search)
+          cards = Cards.objects.filter(title__icontains=search)[:50]
       else:
           cards = Cards.objects.none()
 
-      return render(
-          request=request,
-          template_name='partial_results.html',
-          context={
-              'cards': cards,
-              'deck_id': deck_id,
-          }
-      )
+    for card in cards:
+        if card.type == 'Plot Twist':
+            card.container_type = 'plot-twist'
+        else:
+            # remove spaces from type
+            card.container_type = card.type.replace(" ", "")
+            # lowercase the type
+            card.container_type = card.container_type.lower()
+
+    return render(
+        request=request,
+        template_name='partial_results.html',
+        context={
+            'cards': cards,
+            'deck_id': deck_id,
+        }
+    )
+
+def add_card(request, deck_id, card_id):
+    try:
+        deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
+        deck_card.quantity += 1
+    except DeckCards.DoesNotExist:
+        deck_card = DeckCards(card_id=card_id, deck_id = deck_id, quantity=1)
+    deck_card.save()
+
+    card = Cards.objects.get(id=card_id)
+
+    # data = Data.objects.filter(title=card.title, version=card.version, type=card.type).exclude(type='Planet')[:1].get()
+
+    
+
+    context = {
+        'card': card,
+        'width': 250,
+        'height': 350,
+    }
+
+    return render(request, 'partials/stack-card-template.html', context)
 
 def view_deck(request):
     # if request.method == "GET":
@@ -65,10 +102,19 @@ def view_deck(request):
     return render(request, 'edit_modal.html')
 
 def increment_quantity(request, deck_id, card_id):
-    try:
-        deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
+    # try:
+    #     deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
+    #     deck_card.quantity += 1
+    # except DeckCards.DoesNotExist:
+    #     deck_card = DeckCards(card_id=card_id, deck_id = deck_id, quantity=1)
+    # deck_card.save()
+
+    # should this really be handling adding a new card? I feel like that should be a seperate method.
+    deck_card = DeckCards.objects.get(card_id=card_id, deck_id=deck_id)
+
+    if deck_card:
         deck_card.quantity += 1
-    except DeckCards.DoesNotExist:
+    else:
         deck_card = DeckCards(card_id=card_id, deck_id = deck_id, quantity=1)
     deck_card.save()
 
@@ -201,7 +247,7 @@ def card_search(request):
 
 def change_display_method(request, deck_id):
     display_method = request.GET.get('view-select')
-    deck_cards = DeckCards.objects.filter(deck_id=deck_id)
+    deck_cards = DeckCards.objects.filter(deck_id=deck_id).order_by('card__cost')
     deck = Decks.objects.filter(id=deck_id)  
 
     card_ids_and_quantities = deck_cards.values_list('card_id', 'quantity')
@@ -216,7 +262,7 @@ def change_display_method(request, deck_id):
         'display_method': display_method,
     }
 
-    return render(request, 'deck.html', context)
+    return render(request, display_method+'-template.html', context)
 
 def deck_select(request):
     decks = Decks.objects.filter(user_id=request.session['user_id'])  
