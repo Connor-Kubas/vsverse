@@ -8,60 +8,84 @@
 
 {% include 'templates/partials/purple-banner.html' %}
 
-    <div id="cards">
+    <div class="play-area-container">
+{% comment %} Display: flex col, bottom part will be display: flex justify-content: space-between {% endcomment %}
+        <div id="cards">
+        </div>
+
+        <div class="bottom-cards">
+
+            <div class="hand" id="hand">
+            </div>
+            <div class="deck-container" id="deck-container">
+                <div class="deck-context-menu" id="deck-context-menu">
+                    <button id="deck-context-menu-search" onclick="displaySearchModal();">Search</button>
+                </div>
+            </div>
+
+        </div>
+    
     </div>
 
-    <div class="deck-button" onClick="addCard()"></div>
-
-    {% comment %} {{ card.uuid }} {% endcomment %}
-    {% comment %} <div class="card-object" style="display: inline-block; position: absolute;" id="card">
-        {% card card 220 307 %}
-    </div>  {% endcomment %}
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-inner" id="search-modal-inner"></div>
+    </div>
 
 <script>
 
-    function addCard() {
-        var newImage = document.createElement('img');
-        newImage.src = '/static/images/cards_low_res/' + json_objects[0].uuid + '.jpg'; // Set the image source URL
-        newImage.class = 'card_image';
-        document.getElementById('cards').appendChild(newImage);
+    let deck_container = document.getElementById('deck-container');
 
-        json_objects.shift();
+    // This function will add a specified card to the play area.
+    function addCardToPlayArea(card) {
+        let element = getCardElement(card);
+        document.getElementById('cards').appendChild(element);
     }
 
-    var json_string = '{{card_json|escapejs|safe}}';
-    var json_objects = JSON.parse(json_string);
+    function addCardToHand(card) {
+        let element = getCardElement(card);
+        document.getElementById('hand').appendChild(element);
+    }
 
-    json_objects = shuffleArray(json_objects);
+    function getCardElement(card) {
+        element = getCardImageElementFromCard(card) 
+        // attach drag event handler
+        dragElement(element);
+        // add it to the play area
+        removeCardFromDeck(card);
 
-    console.log(json_objects);
+        return element;
+    }
 
-    var offsetX, offsetY;
-    var isDragging = false;
+    function getCardImageElementFromCard(card) {
+        var newImage = document.createElement('img');
+        newImage.src = '/static/images/cards_low_res/' + card.uuid + '.jpg'; // Set the image source URL
+        newImage.className = 'card_image';
+        newImage.id = "image-" + Math.random().toString(36).substr(2, 9);
 
-    // Event listener for mouse down event
-    draggableElement.addEventListener("mousedown", function(event) {
-        event.preventDefault();
-        // Calculate the offset between mouse click position and element position
-        offsetX = event.clientX - draggableElement.getBoundingClientRect().left;
-        offsetY = event.clientY - draggableElement.getBoundingClientRect().top;
-        isDragging = true;
-    });
+        return newImage;
+    }
 
-    // Event listener for mouse move event
-    document.addEventListener("mousemove", function(event) {
-        if (isDragging) {
-            // Update element position based on mouse position
-            draggableElement.style.left = event.clientX - offsetX + "px";
-            draggableElement.style.top = event.clientY - offsetY + "px";
+    function removeCardFromDeck(card) {
+        const index = cards.indexOf(card);
+        if (index !== -1) {
+            cards.splice(index, 1);
         }
-    });
+    }
 
-    // Event listener for mouse up event
-    document.addEventListener("mouseup", function() {
-        // Stop dragging when the mouse button is released
-        isDragging = false;
-    });
+    // This function draws a card from the top of the deck.
+    function drawCard() {
+        addCardToHand(cards[0]);
+    }
+
+    let card_json = '{{card_json|escapejs|safe}}';
+    let cards = JSON.parse(card_json);
+    // console.log(cards);
+
+    cards = shuffleArray(cards);
+
+    function shuffleDeck() {
+        cards = shuffleArray(cards);
+    }
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -74,17 +98,122 @@
         return array;
     }
 
+    // show custom context menu when right click the deck.
+    deck_container.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+        context_menu = document.getElementById('deck-context-menu');
+        context_menu.style.display = 'flex';
+    });
+
+    deck_container.addEventListener('click', function() {
+        drawCard();
+    });
+
+    // close the deck-context-menu whenever you click.
+    document.addEventListener('click', function(event) {
+        context_menu = document.getElementById('deck-context-menu');
+        context_menu.style.display = 'none';
+    });
+
+    document.getElementById('search-modal').addEventListener('click', function(event) {
+        document.getElementById('search-modal').style.display = 'none';
+    });
+
+    function displaySearchModal() {
+        document.getElementById('search-modal').style.display = 'flex';
+        let modal_content = document.getElementById('search-modal-inner');
+        modal_content.innerHTML = '';
+
+        cards.forEach(function (card) {
+            let cardObject = getCardImageElementFromCard(card)
+            addOnClick(cardObject, card);
+            modal_content.appendChild(cardObject);
+        });
+        // need to populate the search modal.
+    }
+
+    // Event handler to add the card element to the play area on click.
+    function addOnClick(cardElement, cardData) {
+        cardElement.addEventListener('click', function(event) {
+            addCardToPlayArea(cardData);
+        });
+    }
+
+    function dragElement(elmnt) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let mouseXOffset = 0;
+        let mouseYOffset = 0;
+
+        elmnt.onmousedown = dragMouseDown;
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            mouseXOffset = e.clientX;
+            mouseYOffset = e.clientY;
+
+            elmnt.style.top = (elmnt.offsetTop - mouseY) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - mouseX) + "px";
+
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            elmnt.style.position = 'absolute';
+            // move it to the cards div
+            document.getElementById('cards').appendChild(elmnt);
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            mouseX = mouseXOffset - e.clientX;
+            mouseY = mouseYOffset - e.clientY;
+            mouseXOffset = e.clientX;
+            mouseYOffset = e.clientY;
+            console.log(mouseX, mouseY, mouseXOffset, mouseYOffset);
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - mouseY) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - mouseX) + "px";
+        }
+
+
+        function closeDragElement(event) {
+            // stop moving when mouse button is released:
+            document.onmouseup = null;
+            document.onmousemove = null;
+
+            // this is the thing your cursor is pointing to.
+            // const target = document.elementFromPoint(event.clientX, event.clientY);
+
+            const hand = document.getElementById('hand');
+            const handRect = hand.getBoundingClientRect();
+
+            if (
+                event.clientX >= handRect.left &&
+                event.clientX <= handRect.right &&
+                event.clientY >= handRect.top &&
+                event.clientY <= handRect.bottom
+            ) {
+                elmnt.style.position = '';
+                elmnt.style.top = '';
+                elmnt.style.left = '';
+                hand.appendChild(elmnt);
+            }
+        } 
+    }
+
+
 </script>
 
 <style>
 
-    .deck-button {
-        position: fixed;
-        right: 0;
-        bottom: 0;
+    .deck-container {
         background-image: url('/static/images/card_back.jpg');
-        width: 140px;
-        height: 200px;
+        height: 100%;
+        width: 5%;
         background-size: contain;
     }
 
@@ -94,6 +223,61 @@
 
     .cards, img {
         user-select: none;
+    }
+
+    .card_image {
+        height: 300px;
+    }
+
+    .deck-context-menu {
+        display: none;
+        height: 100px;
+        width: 100px;
+        background-color: black;
+    }
+
+    .search-modal {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-modal-inner {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
+        grid-auto-rows: auto; /* Automatically size rows based on content */
+        gap: 10px; /* Gap between grid items */
+        overflow-y: scroll;
+        width: 50%;
+        height: 50%;
+        background-color: rgb(23, 25, 30);
+    }
+
+    .play-area-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 93%; 
+    }
+
+    .bottom-cards {
+        height: 25%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .hand {
+        width: 70%;
+        height: 100%;
+        background-color: pink;
     }
 
 </style>
