@@ -35,6 +35,15 @@
 
     let deck_container = document.getElementById('deck-container');
 
+    function tap(card) {
+        card_is_tapped = card.style.transform == 'rotate(90deg)';
+        if (card_is_tapped) {
+            card.style.transform = 'rotate(0deg)';
+        } else {
+            card.style.transform = 'rotate(90deg)';
+        }
+    }
+
     // This function will add a specified card to the play area.
     function addCardToPlayArea(card) {
         let element = getCardElement(card);
@@ -46,10 +55,30 @@
         document.getElementById('hand').appendChild(element);
     }
 
+    function rotateOnClick(element) {
+        let startX, startY;
+
+        element.addEventListener('mousedown', (event) => {
+            startX = event.clientX;
+            startY = event.clientY;
+        });
+
+        element.addEventListener('mouseup', (event) => {
+            const endX = event.clientX;
+            const endY = event.clientY;
+
+            if (startX === endX && startY === endY) {
+                tap(element);
+            }
+        });
+    }
+
     function getCardElement(card) {
         element = getCardImageElementFromCard(card) 
         // attach drag event handler
         dragElement(element);
+        // add events for tapping
+        rotateOnClick(element); 
         // add it to the play area
         removeCardFromDeck(card);
 
@@ -173,24 +202,19 @@
             mouseY = mouseYOffset - e.clientY;
             mouseXOffset = e.clientX;
             mouseYOffset = e.clientY;
-            console.log(mouseX, mouseY, mouseXOffset, mouseYOffset);
             // set the element's new position:
             elmnt.style.top = (elmnt.offsetTop - mouseY) + "px";
             elmnt.style.left = (elmnt.offsetLeft - mouseX) + "px";
         }
-
 
         function closeDragElement(event) {
             // stop moving when mouse button is released:
             document.onmouseup = null;
             document.onmousemove = null;
 
-            // this is the thing your cursor is pointing to.
-            // const target = document.elementFromPoint(event.clientX, event.clientY);
-
             const hand = document.getElementById('hand');
             const handRect = hand.getBoundingClientRect();
-
+            // if you set it down in the hand
             if (
                 event.clientX >= handRect.left &&
                 event.clientX <= handRect.right &&
@@ -205,6 +229,9 @@
         } 
     }
 
+    function roundToNearest(number, multiple) {
+        return Math.round(number / multiple) * multiple;
+    }
 
 </script>
 
@@ -227,6 +254,8 @@
 
     .card_image {
         height: 300px;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
     }
 
     .deck-context-menu {
@@ -277,7 +306,7 @@
     .hand {
         width: 70%;
         height: 100%;
-        background-color: pink;
+        background-color: black;
     }
 
 </style>
