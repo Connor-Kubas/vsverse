@@ -8,9 +8,20 @@
 
 {% include 'partials/toolbar.html' %}
 
-<h1>Total Cards in Deck: {{ total_cards }}</h1>
-<h2>Characters: {{ character_count }}</h2>
-<h2>Non-Characters: {{ non_character_count }}</h2>
+<div id="deck-info" class="">
+    <div id="general-info">
+        <h1>Total Cards in Deck: {{ total_cards }}</h1>
+        <h2>Characters: {{ character_count }}</h2>
+        <h2>Non-Characters: {{ non_character_count }}</h2>
+    </div>
+
+    <div id="character-info">
+        <h1>Curve</h1>
+        {% for key, value in character_cost_counts.items %}
+            <p>{{ key }} : {{ value }}</p>
+        {% endfor %}
+    </div>
+</div>
 {% comment %} <h2>Card Types:</h2>
 <ul>
     {% for card_type, count in card_types.items %}
