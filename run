@@ -1,0 +1,10 @@
+# docker run -p 5000:8000 python-server
+# docker run -p 5000:8000 -v "$PWD":/app python-server
+# docker run -p 5000:8000 -v /media/connor-kubas/6280-7F21/vs_verse_static/static/images/cards_low_res:/external_cards python-server
+
+docker run -d \
+  -p 9001:80 \
+  -v /media/connor-kubas/6280-7F21/vs_verse_static/static/images/cards_low_res:/usr/share/nginx/html:ro \
+  nginx
+
+

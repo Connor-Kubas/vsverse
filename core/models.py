@@ -1,6 +1,10 @@
 from django.db import models
 import uuid
 from authentication.models import User
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Affiliations(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -121,7 +125,10 @@ class Cards(models.Model):
     def image_url(self):
         data = Data.objects.filter(title=self.title, version=self.version).first()
 
-        return '/static/images/cards_low_res/'+data.uuid+'.jpg'
+        if (data == None):
+            return ""
+
+        return os.environ.get('CARD_IMAGE_URL')+data.uuid+'.jpg'
 
     class Meta:
         managed = False

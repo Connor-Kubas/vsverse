@@ -9,6 +9,12 @@ from fuzzywuzzy import process
 from PIL import Image
 import base64
 from io import BytesIO
+from django.conf import settings
+import os
+from dotenv import load_dotenv
+import requests
+
+load_dotenv()
 
 register = template.Library()
 
@@ -25,9 +31,9 @@ def card(card, width=294, height=410):
         file = data.uuid + '.jpg'
         
     context = {
-        'file': file,
         'width': width,
         'height': height,
+        'image_url': os.environ.get('CARD_IMAGE_URL')+file
     }
 
     return render_to_string('card_image_template.html', context)
@@ -154,7 +160,19 @@ def b64_image(deck_id, deck):
         except DeckCards.DoesNotExist:
             image_uuid = 'back'
 
-    image = Image.open('static/images/cards_low_res/' + image_uuid + '.jpg')
+    # image = Image.open(os.environ.get('CARD_IMAGE_URL') + image_uuid + '.jpg')
+    image_url = os.environ.get('CARD_IMAGE_URL') + image_uuid + '.jpg'
+    print("applesauce,", image_url)
+
+    # Fetch the image using requests
+    response = requests.get(image_url)
+    if response.status_code == 200:  # Ensure the request was successful
+        # Open the image from the response content
+        image = Image.open(BytesIO(response.content))
+    else:
+        # Handle the case where the image cannot be fetched
+        print(f"Failed to fetch image from {image_url}")
+
 
     top_x = 60  # X-coordinate of the top-left corner of the ROI
     top_y = 70  # Y-coordinate of the top-left corner of the ROI

@@ -1,7 +1,8 @@
 {% load static %}
 
 <img 
-    src="{% static 'images/cards_low_res/'|add:file %}"
+    {% comment %} src="{% static 'images/cards_low_res/'|add:file %}" {% endcomment %}
+    src="{{ image_url }}"
     style="
         width: {{ width }}px;
         height: {{ height }}px;

@@ -2,6 +2,10 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -47,3 +51,5 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# urlpatterns += static('/cards_low_res/', document_root=os.environ.get('CARD_IMAGE_URL'))
+# os.environ.get('IMAGE_BASE_URL', '/static/images/')

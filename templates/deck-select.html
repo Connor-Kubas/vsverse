@@ -12,7 +12,8 @@
     </div>
     <div class="deck-grid">
         {% for deck in decks %}
-        <div class="deck" style="background-image: url('data:image/jpeg;base64, {% b64_image deck_id=deck.id deck=deck %}');">
+        {% comment %} <div class="deck" style="background-image: url('data:image/jpeg;base64, {% b64_image deck_id=deck.id deck=deck %}');"> {% endcomment %}
+        <div class="deck">
             <div class="gradient-mask">
             </div>
             <div class="info">

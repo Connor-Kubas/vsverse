@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - nginx
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      # this needs to come from the environment
+      - /media/connor-kubas/6280-7F211/vs_verse_static/static/images/cards_low_res:/usr/share/nginx/html:ro
+    ports:
+      - "9001:80"
+
